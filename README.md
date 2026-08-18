@@ -1,16 +1,13 @@
-# VKMT - Virtual Kernel Metal Translation. The Official Custom Wine Made For Metalsharp. 
+# VKMT - The Official Custom Wine Made For Metalsharp. 
 
-VKMT is a source-integrated, Apple-Silicon-native Wine distribution built to
-run ARM64, ARM64EC, x86_64, and i386/WoW64 Windows software together on macOS
-without Rosetta.
+VKMT is a source-integrated, Apple-Silicon-native Wine distribution built to run ARM64, ARM64EC, x86_64, and i386/WoW64 Windows software together on macOS without Rosetta.
 
-It is not only a graphics wrapper. The project combines a heavily customized
+The project combines a heavily customized
 Wine 11.12, ARM64EC/ARM64X support, native ARM64 x86 translators, a canonical
 i386 guest-memory manager, Direct3D and OpenGL translation to Metal, MSync,
 multimedia and controller runtimes, browser engines, installers, Wine Mono,
 and native plus Windows Java runtimes. The development workspace retains the
-source, patches, build scripts, runtime providers, probes, and
-release-snapshot tooling needed to reproduce and validate that stack.
+source, patches, build scripts, runtime providers, probes, and release-snapshot tooling needed to reproduce and validate that stack.
 
 > [!IMPORTANT]
 > VKMT is an active research and development project, not a turnkey Wine

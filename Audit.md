@@ -36,7 +36,7 @@ fails closed if run on a non-Darwin host.
 | 5 | The latest VKD3D-Proton-MacOS v1.0 asset is verified and passes the complete ladder in VKMT's matched x86_64 Wine lane. Its x86_64 PE modules are packaged as an explicit overlay; they are not copied over VKMT's native ARM64/ARM64EC/i386 directories because the same modules do not expose the ladder through the ARM64 FEX route. | Release asset SHA-256, fresh-probe ladder, module hashes, and the raw ARM64 compatibility run under `docs/validation/roadmap-vkd3d-v1/`. | PASS (x86_64 overlay; native FEX lane preserved) |
 | 6 | TSO must remain disabled in every launch path and audit. | `FEX_TSOENABLED=0`, `FEX_VECTORTSOENABLED=0`, `FEX_MEMCPYSETTSOENABLED=0`; `docs/NO_TSO_ROSETTA_PARITY_PLAN.md`. | PASS |
 | 7 | Audit 2 is the close-out audit for compatibility gaps, leakage, and stale state. | `Audit2.md`, the P6 release receipt, and the retained native-FEX compatibility note. | PASS |
-| 8 | Package comparison, split/reassembly, installer regeneration, and upload include the native VKMT baseline and the explicit v1.0 x86_64 graphics overlay. | `scripts/create-runtime-snapshot.sh` plus the final release manifest and installer receipts. | READY |
+| 8 | Package comparison, split/reassembly, installer regeneration, external installation, and release replacement include the native VKMT baseline and the explicit v1.0 x86_64 graphics overlay. | `docs/validation/roadmap-package-final-20260819/RESULTS.md`, final installer receipt, and release asset verification. | PASS |
 
 ## Phase 4 gate ladder
 

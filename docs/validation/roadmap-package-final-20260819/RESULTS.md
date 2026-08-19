@@ -44,3 +44,12 @@ status=0
 ```
 
 The temporary prefix and wineserver were stopped and removed by the gate.
+
+The v1.0 overlay in that same installed target was then loaded by a fresh
+VKMT x86_64 Wine prefix with a freshly rebuilt `flprobe.exe`. The complete
+ladder and capability receipt is retained in
+`docs/validation/roadmap-vkd3d-v1/VKMT-X86-LADDER.md`; the run returned status
+0 and reported max feature level 12_2, SM 6.5, DXR 1.1, VRS tier 2, mesh tier
+1, sampler feedback tier 0_9, tiled tier 4, conservative raster tier 3,
+ROVs, depth bounds, barycentrics, typed casting, copy-queue timestamps, and
+logical operations.

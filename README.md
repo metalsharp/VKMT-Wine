@@ -767,6 +767,7 @@ VKMT is broad, but its claims remain gate-specific:
 - [Graphics and translation](docs/graphics.md)
 - [Performance and stability](docs/performance.md)
 - [Packaging and validation](docs/package-and-validation.md)
+- [MetalSharp bundle audit and VKMT integration plan](docs/metalsharp-integration-plan.md)
 - [Validation evidence index](docs/validation/index.md)
 
 ## Contributing

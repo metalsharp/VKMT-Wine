@@ -35,6 +35,12 @@ For each fresh-prefix run:
 6. repeat the run in a second fresh prefix;
 7. compare resident-set high-water and allocation/leak summaries.
 
+The retained executable-memory gate records status-0 self-modifying-code,
+Java JIT, cross-process, graphics, and exact-cleanup runs in
+`docs/validation/perf-p7-executable-memory-20260801/RESULTS.md`; the P8
+hot-set receipt records repeated status-0 four-architecture runs and the
+working-set/cache controls in `docs/validation/perf-p8-hotset-20260801/`.
+
 Timeouts, wrapper success, partial markers, and a process that is merely
 terminated are failures, not passes.
 

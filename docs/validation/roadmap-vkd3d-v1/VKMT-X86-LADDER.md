@@ -39,9 +39,11 @@ Barycentrics=1
 OutputMergerLogicOp=1
 ```
 
-`VKMT-x86-ladder.log` is the complete output. The universal MoltenVK slice
-and the three x86_64 PE modules are the exact v1.0 release asset hashes in
-`SHA256SUMS`.
+The compact receipt above is retained after temporary-prefix cleanup. The
+source-backed full ladder corpus is also retained in
+`/Volumes/AverySSD/VKD3D-Proton-MacOS/artifacts/evidence/rung-ladder-2026-08-16.txt`.
+The universal MoltenVK slice and the three x86_64 PE modules are the exact
+v1.0 release asset hashes in `SHA256SUMS`.
 
 The ARM64-native P6 gate remains a separate acceptance lane and continues to
 use VKMT's architecture-matched providers. The v1.0 release's published

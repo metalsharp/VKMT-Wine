@@ -17,8 +17,8 @@ if [ ! -d "$TP/MoltenVK/.git" ]; then
 fi
 git -C "$TP/MoltenVK" fetch --quiet origin
 git -C "$TP/MoltenVK" checkout --quiet "$MOLTENVK_REV"
-git -C "$TP/MoltenVK" apply --check ../../patches/MoltenVK-vkmt-phase2-fatal-gaps.patch 2>/dev/null \
-  && git -C "$TP/MoltenVK" apply ../../patches/MoltenVK-vkmt-phase2-fatal-gaps.patch \
+git -C "$TP/MoltenVK" apply --check ../../patches/MoltenVK-vkmt-fatal-gaps.patch 2>/dev/null \
+  && git -C "$TP/MoltenVK" apply ../../patches/MoltenVK-vkmt-fatal-gaps.patch \
   || echo "MoltenVK patch already applied or conflicts; check git -C $TP/MoltenVK status"
 
 if [ ! -d "$TP/vkd3d-proton/.git" ]; then

@@ -28,6 +28,6 @@ int main(int argc, char **argv)
     fclose(file);
     if (errors) ID3D10Blob_Release(errors);
     ID3D10Blob_Release(bytecode);
-    puts("VKMT_P6_DXBC_COMPILE_OK");
+    puts("VKMT_ACCEPTANCE_SINGLE_PREFIX_DXBC_COMPILE_OK");
     return 0;
 }

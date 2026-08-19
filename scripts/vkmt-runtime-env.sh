@@ -27,6 +27,15 @@ export FEX_TSOENABLED=0
 export FEX_VECTORTSOENABLED=0
 export FEX_MEMCPYSETTSOENABLED=0
 
+# Use the shipped DXMT defaults unless an application-specific profile is
+# explicitly selected by the caller.  DXMT_CONFIG_FILE is intentionally
+# absolute so launches remain independent of the process working directory.
+export DXMT_CONFIG_FILE="${DXMT_CONFIG_FILE:-$VKMT_RUNTIME_ROOT/runtime/dxmt.conf}"
+test -s "$DXMT_CONFIG_FILE" || {
+  echo "Missing VKMT DXMT configuration: $DXMT_CONFIG_FILE" >&2
+  return 1 2>/dev/null || exit 1
+}
+
 # Keep every graphics translator in one versioned, per-prefix cache generation.
 # The manifest is created during prefix staging; a previously unseen prefix is
 # initialized lazily once and subsequent launches only source this small file.

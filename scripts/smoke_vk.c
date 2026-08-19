@@ -75,5 +75,5 @@ int main(void) {
 
     vkDestroyInstance(inst, NULL);
     printf(fail ? "\nSMOKE: gaps present (expected pre-Phase-2)\n" : "\nSMOKE: all vkd3d hard requirements met\n");
-    return 0; // informational; gaps are expected until Phase 2 lands
+    return 0; // informational; gaps are expected until graphics work lands
 }

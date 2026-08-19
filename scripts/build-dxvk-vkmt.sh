@@ -1,6 +1,6 @@
 #!/bin/bash
 # Build a pinned DXVK PE runtime into the active VKMT tree. This does not
-# rebuild Wine and defaults to the Phase 5 i386 target.
+# rebuild Wine and defaults to the graphics work i386 target.
 set -euo pipefail
 
 VKMT="$(cd "$(dirname "$0")/.." && pwd)"

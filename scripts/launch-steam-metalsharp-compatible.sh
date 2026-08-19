@@ -4,7 +4,7 @@ set -euo pipefail
 VKMT_ROOT=${VKMT_ROOT:-/Volumes/AverySSD/VKMT}
 METALSHARP_ROOT=${METALSHARP_ROOT:-/Volumes/AverySSD/metalsharp}
 BUILD=${VKMT_WINE_BUILD:-$VKMT_ROOT/wine/build-ec}
-PREFIX=${WINEPREFIX:-$VKMT_ROOT/prefixes/steam-no-tso-phase6}
+PREFIX=${WINEPREFIX:-$VKMT_ROOT/prefixes/steam-no-tso-release}
 STEAM_DIR="$PREFIX/drive_c/Program Files (x86)/Steam"
 CEF_DIR="$STEAM_DIR/bin/cef/cef.win64"
 STEAM_EXE="$STEAM_DIR/steam.exe"
@@ -12,7 +12,7 @@ WRAPPER_SOURCE="$METALSHARP_ROOT/app/bundles/steamwebhelper.exe"
 WRAPPER="$CEF_DIR/steamwebhelper.exe"
 REAL_HELPER="$CEF_DIR/steamwebhelper_real.exe"
 WRAPPER_SHA256=f46a1e8c39c850ba22861f63559f13b4f68557acf04a92e6d1b899769b2ea1f9
-LOG_DIR="$VKMT_ROOT/build/no-tso-phase6"
+LOG_DIR="$VKMT_ROOT/build/no-tso-release"
 LOG="$LOG_DIR/steam-metalsharp-compatible.log"
 
 test -x "$BUILD/wine"

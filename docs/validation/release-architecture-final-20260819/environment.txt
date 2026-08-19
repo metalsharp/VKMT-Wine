@@ -1,6 +1,0 @@
-runtime_root=/Volumes/AverySSD/VKMT-roadmap-work/runtime-final
-prefix=/Volumes/AverySSD/VKMT-roadmap-work/runtime-final/build/roadmap-p6-release.86993.23046/prefix
-platform=Darwin/arm64
-FEX_TSOENABLED=0
-FEX_VECTORTSOENABLED=0
-FEX_MEMCPYSETTSOENABLED=0

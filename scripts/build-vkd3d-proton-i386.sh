@@ -1,5 +1,5 @@
 #!/bin/bash
-# Targeted Phase 5 i386 vkd3d-proton build using the in-tree LLVM-MinGW.
+# Targeted graphics work i386 vkd3d-proton build using the in-tree LLVM-MinGW.
 set -euo pipefail
 
 VKMT="$(cd "$(dirname "$0")/.." && pwd)"

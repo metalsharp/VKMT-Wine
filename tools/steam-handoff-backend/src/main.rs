@@ -10,7 +10,7 @@ use std::time::Duration;
 const ADDRESS: &str = "127.0.0.1:9274";
 const MAX_HANDOFFS: u8 = 2;
 const VKMT_ROOT: &str = "/Volumes/AverySSD/VKMT";
-const PREFIX: &str = "/Volumes/AverySSD/VKMT/prefixes/steam-no-tso-phase6";
+const PREFIX: &str = "/Volumes/AverySSD/VKMT/prefixes/steam-no-tso-release";
 
 #[derive(Default)]
 struct State {

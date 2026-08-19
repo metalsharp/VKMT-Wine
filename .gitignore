@@ -26,6 +26,3 @@ test/**/*.dll
 test/**/*.o
 test/**/*.a
 test/steam/poll-*/
-docs/validation/**/*
-!docs/validation/**/
-!docs/validation/**/RESULTS.md

@@ -19,6 +19,7 @@ MoltenVK_icd.json: OK
 README.md: OK
 ---
 
-The published DLL set is x86_64 PE for Wine/Rosetta. It is verified as
-an upstream input but is not promoted as VKMT's no-Rosetta all-architecture
-runtime until an architecture-matched VKMT compatibility gate passes.
+The published DLL set is x86_64 PE for Wine/Rosetta. It is promoted only as
+the explicit x86_64 graphics overlay; VKMT's native ARM64/ARM64EC/i386
+directories retain their architecture-matched artifacts. A raw ARM64/FEX
+compatibility run is retained separately and is not represented as a pass.

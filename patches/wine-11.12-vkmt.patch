@@ -1092,7 +1092,7 @@ diff -ruN --exclude=*.o --exclude=.git /tmp/wine-11.12/dlls/xtajit64/vkmt/dispat
 + * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 + *
 + * ABI conventions (derived from ntdll/signal_arm64ec.c and llvm-mingw
-+ * thunk disassembly; see docs/EMULATION.md, M2 section):
++ * thunk disassembly; see docs/architecture.md, M2 section):
 + *
 + *  - BeginSimulation: plain EC call; guest state already converted into
 + *    cpu_area->ContextAmd64 by ntdll; InSimulation already 1. Never returns.
@@ -1518,7 +1518,7 @@ diff -ruN --exclude=*.o --exclude=.git /tmp/wine-11.12/dlls/xtajit64/vkmt/dispat
 +     * is_valid_arm64ec_frame) — the MSFT_OP_EC_CONTEXT restore does not
 +     * yield the guest's x64 frames on this stack configuration, so unwind
 +     * passses (__try/__finally, RtlUnwindEx past the boundary) are broken.
-+     * See docs/EMULATION.md M3e for the full analysis.  The reconcile
++     * See docs/architecture.md M3e for the full analysis.  The reconcile
 +     * above is still required and sufficient for pass-1 dispatch (filter
 +     * call + except block execution). */
 +}

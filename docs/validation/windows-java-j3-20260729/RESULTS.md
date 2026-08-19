@@ -1,6 +1,6 @@
 # Windows Java J3 HotSpot JIT acceptance
 
-Phase J3 passed on 2026-07-29 with:
+Workstream J3 passed on 2026-07-29 with:
 
 ```sh
 scripts/probe-windows-java-j3-jit.sh

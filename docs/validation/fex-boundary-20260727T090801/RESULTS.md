@@ -1,11 +1,11 @@
 # FEX/WoW64 boundary observation — 2026-07-27
 
-This is a Phase 1 observation, not a passing i386 execution result.
+This is a Workstream 1 observation, not a passing i386 execution result.
 
 ## Recorded environment
 
 - FEX source: `1cc4b93e7a71c883ec021b71359f136394dc1f3c`, with the preserved
-  local experiment represented by the Phase 1 manifest/diff state.
+  local experiment represented by the Workstream 1 manifest/diff state.
 - Wine source: `07e6a94e02ace0fb2f0da76c2c60a170e1a64164` plus its preserved
   local worktree.
 - `i386_smoke.exe`: `IMAGE_FILE_MACHINE_I386`.

@@ -1,6 +1,6 @@
 # Windows Java J0 acceptance
 
-Phase J0 passed on 2026-07-29.
+Workstream J0 passed on 2026-07-29.
 
 ## Inputs and staging
 

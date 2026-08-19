@@ -8,7 +8,7 @@ TAG="${VKD3D_MACOS_TAG:-v1.0}"
 ASSET="vkd3d-proton-macos.tar.zst"
 EXPECTED_SHA256="f1eabd729a65f0a62bcba9a3a8054bdef9895981351dc8896993a8cffa12299c"
 ARCHIVE="${VKD3D_MACOS_ARCHIVE:-}"
-EVIDENCE_DIR="${VKD3D_MACOS_EVIDENCE_DIR:-$ROOT/docs/validation/roadmap-vkd3d-v1}"
+EVIDENCE_DIR="${VKD3D_MACOS_EVIDENCE_DIR:-$ROOT/docs/validation/release-vkd3d-v1}"
 LOCAL_ONLY=0
 
 usage() { echo "usage: $0 [--archive PATH] [--evidence-dir PATH] [--local-only]" >&2; exit 2; }

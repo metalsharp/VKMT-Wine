@@ -1,4 +1,4 @@
-# VKMT - The Official Custom Wine Made For Metalsharp. 
+# VKMT - The Official Custom Wine Made For Metalsharp.
 
 VKMT is a source-integrated, Apple-Silicon-native Wine distribution built to run ARM64, ARM64EC, x86_64, and i386/WoW64 Windows software together on macOS without Rosetta.
 
@@ -64,7 +64,7 @@ VKMT maintains a targeted Wine 11.12 source and build tree with:
 - ARM64X image classification and CHPE metadata handling;
 - ARM64EC import redirection from x64 export thunks to paired native ARM64
   implementations;
-- an x28-based Wine TEB contract and post-link repair/audit tooling for code
+- an x28-based Wine TEB contract and post-link repair/review tooling for code
   that would otherwise use Darwin's reserved x18 register;
 - Darwin 16-KiB host-page-aware W^X and managed-runtime protection handling;
 - focused headless win32u/GDI/font bootstrap for direct graphics clients;
@@ -121,7 +121,7 @@ source-built ARM64 WoW64 CPU provider. The custom boundary includes:
 - DOS compatibility reservation that preserves the conventional `0x400000`
   image base for relocation-stripped installers.
 
-The non-graphics Phase 4 gate passes `LoadLibrary`, syscall return/output
+The non-graphics Workstream 4 gate passes `LoadLibrary`, syscall return/output
 pointers, TLS, context transfers, structured exception handling, ordered
 APCs, a second thread, a real Wine user callback, repeated thread creation,
 and exact shutdown in one clean prefix.
@@ -556,7 +556,7 @@ FEX-derived provider. The completed J0–J6 sequence covers:
 
 The unified J6 gate runs native ARM64 Java, Windows x86_64 Java, Windows i386
 Java, and all four Wine architecture fixtures in one clean prefix. It then
-reruns the Phase 4 WoW64 contract, i386 D3D11/D3D12, Gecko/MSHTML, OpenGL
+reruns the Workstream 4 WoW64 contract, i386 D3D11/D3D12, Gecko/MSHTML, OpenGL
 through GLSL 4.5 Metal readback, SDL2/SDL3 and the ordinary four-mode
 single-prefix baseline.
 
@@ -647,7 +647,7 @@ curl -L https://dl.winehq.org/wine/source/11.x/wine-11.12.tar.xz \
 ```
 
 Later milestone patches and their exact bases are documented in
-[`patches/NOTES.md`](patches/NOTES.md). Do not stack every snapshot patch
+[`patches/README.md`](patches/README.md). Do not stack every snapshot patch
 blindly: several files represent cumulative milestone states rather than an
 independent linear series.
 
@@ -737,7 +737,7 @@ internal storage.
 - `patches/` — reproducible Wine, FEX and third-party patches.
 - `scripts/` — fetch, focused build, stage, probe and snapshot commands.
 - `test/` — source and selected redistributable binaries for deterministic fixtures.
-- `docs/` — architecture plans, audits, contracts and validation evidence.
+- `docs/` — domain references, contracts, package policy and validation evidence.
 - `AGENTS.md` — preservation rules and authoritative implementation journal.
 
 ## Accepted boundaries and deliberate exclusions
@@ -757,20 +757,17 @@ VKMT is broad, but its claims remain gate-specific:
   scope.
 - LDAP, Kerberos/GSSAPI, NTLM expansion, ODBC, printing, smart cards, serial,
   scanner/camera, COM/DCOM service expansion, scheduled tasks and shell
-  association expansion were removed from the completion roadmap.
+  association expansion were removed from the completion plan.
 
 ## Documentation
 
 - [Preservation and build contract](AGENTS.md)
-- [i386/WoW64 execution contract](docs/I386_WOW64_EXECUTION_CONTRACT.md)
-- [i386/WoW64 architecture plan](docs/I386_WOW64_PLAN.md)
-- [MSync](docs/MSYNC.md)
-- [SDL runtime](docs/SDL_RUNTIME.md)
-- [emulation design](docs/EMULATION.md)
-- [native Wine D3D12](docs/NATIVE_WINE_D3D12.md)
-- [MoltenVK/vkd3d gap audit](docs/GAPS.md)
-- [transform-feedback design](docs/TRANSFORM_FEEDBACK.md)
-- [Windows Java/WoW64 plan](docs/WINDOWS_JAVA_WOW64_PLAN.md)
+- [Project overview and acceptance model](docs/project-overview.md)
+- [Architecture and compatibility](docs/architecture.md)
+- [Graphics and translation](docs/graphics.md)
+- [Performance and stability](docs/performance.md)
+- [Packaging and validation](docs/package-and-validation.md)
+- [Validation evidence index](docs/validation/index.md)
 
 ## Contributing
 

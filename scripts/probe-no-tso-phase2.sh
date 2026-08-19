@@ -10,7 +10,7 @@ WINE="$BUILD/wine"
 WINESERVER="$BUILD/server/wineserver"
 WINEBOOT="$BUILD/programs/wineboot/aarch64-windows/wineboot.exe"
 SOURCE="$VKMT/test/no_tso_phase2_litmus.c"
-DEFAULT_CANDIDATES="$VKMT/docs/validation/no-tso-phase0-20260731T013101Z/candidates"
+DEFAULT_CANDIDATES="$VKMT/docs/validation/no-tso-baseline-20260731T013101Z/candidates"
 XTAJIT64_BOOTSTRAP="$BUILD/dlls/xtajit64/aarch64-windows/xtajit64.dll"
 XTAJIT_BOOTSTRAP="$BUILD/dlls/xtajit/aarch64-windows/xtajit.dll"
 

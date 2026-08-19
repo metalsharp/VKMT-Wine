@@ -1,6 +1,6 @@
 # Windows Java J2 services and JNI acceptance
 
-Phase J2 passed on 2026-07-29 with:
+Workstream J2 passed on 2026-07-29 with:
 
 ```sh
 scripts/probe-windows-java-j2-services.sh

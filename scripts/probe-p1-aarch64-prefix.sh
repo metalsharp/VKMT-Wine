@@ -19,11 +19,11 @@ for required in "$WINE" "$WINESERVER" "$WINEBOOT" "$SOURCE" \
 done
 
 mkdir -p "$RUNS" "$RESULTS"
-run_root=$(mktemp -d "$RUNS/p1-aarch64-prefix.XXXXXX")
+run_root=$(mktemp -d "$RUNS/arm64-prefix.XXXXXX")
 prefix=$run_root/prefix
 probe=$run_root/aarch64_smoke.exe
 log=$run_root/run.log
-summary=$RESULTS/p1-aarch64-prefix.latest
+summary=$RESULTS/arm64-prefix.latest
 
 cleanup()
 {

@@ -18,4 +18,4 @@ MSI_SINGLE_PREFIX_ALL_ARCHITECTURES_OK
 The disposable prefix was stopped through its exact wineserver and removed.
 This is the MSI core lifecycle gate. Major upgrade, rollback, services,
 shortcuts, environment changes, custom actions, and the direct `msiexec` /
-`msidb` command-line surfaces remain explicit Phase C work.
+`msidb` command-line surfaces remain explicit Workstream C work.

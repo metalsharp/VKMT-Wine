@@ -43,13 +43,13 @@ verify_inventory() {
           missing=1
         fi ;;
     esac
-  done < <(awk '/^```tsv$/{on=1;next} on && /^```$/{exit} on{print}' "$VKMT/Inventory.md")
-  test "$seen" = 1 || { echo "MISSING  Inventory.md TSV block" >&2; missing=1; }
+  done < <(awk '/^```tsv$/{on=1;next} on && /^```$/{exit} on{print}' "$VKMT/docs/package-and-validation.md")
+  test "$seen" = 1 || { echo "MISSING  docs/package-and-validation.md TSV block" >&2; missing=1; }
 }
 
 printf '%s\n' 'VKMT preservation inventory'
 if test "$inventory" = 1; then
-  test -f "$VKMT/Inventory.md" || { echo "MISSING  Inventory.md" >&2; exit 1; }
+  test -f "$VKMT/docs/package-and-validation.md" || { echo "MISSING  docs/package-and-validation.md" >&2; exit 1; }
   verify_inventory
 fi
 present "$WINE_BUILD/wine"

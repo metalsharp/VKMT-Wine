@@ -36,7 +36,7 @@ VKMT_SDL3_I386_OK
 VKMT_SDL2_SDL3_ALL_ARCHITECTURES_OK
 ```
 
-## Architecture and host audit
+## Architecture and host review
 
 - AArch64 DLLs: `IMAGE_FILE_MACHINE_ARM64`
 - ARM64EC DLLs: `IMAGE_FILE_MACHINE_ARM64EC`

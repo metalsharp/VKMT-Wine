@@ -35,7 +35,7 @@ for required in \
   VKMT/wine/build-ec/server/wineserver \
   VKMT/wine/wine-11.12/runtime-providers/xtajit64-arm64ec-p8-rendering-known-good.dll \
   VKMT/wine/wine-11.12/runtime-providers/xtajit-arm64-p8-wineconfig-known-good.dll \
-  VKMT/docs/WINDOWS_JAVA_WOW64_PLAN.md \
+  VKMT/docs/architecture.md \
   VKMT/patches/fex-2607-java-j5.patch \
   VKMT/patches/wine-11.12-java-j5.patch \
   VKMT/scripts/stage-runtime-providers.sh \

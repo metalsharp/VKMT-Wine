@@ -304,13 +304,21 @@ validate_archive_layout() {
     "$PACKAGE_ROOT/providers" \
     "$PACKAGE_ROOT/source/LICENSE-METALSHARP-POLYFORM-NONCOMMERCIAL.md" \
     "$PACKAGE_ROOT/metadata/SHA256SUMS" \
-    "$PACKAGE_ROOT/graphics/vkd3d-proton-macos-v1.0" \
-    "$PACKAGE_ROOT/source/VKMT/Audit.md" \
-    "$PACKAGE_ROOT/source/VKMT/Audit2.md"; do
+    "$PACKAGE_ROOT/graphics/vkd3d-proton-macos-v1.0"; do
     grep -Fqx "$required" <<< "$listing" \
       || grep -Fqx "$required/" <<< "$listing" \
       || die "archive is missing required path: $required"
   done
+  if ! grep -Fqx "$PACKAGE_ROOT/source/VKMT/docs/package-and-validation.md" <<< "$listing" \
+      && ! grep -Fqx "$PACKAGE_ROOT/source/VKMT/docs/package-and-validation.md/" <<< "$listing"; then
+    # Existing public bundles predate the normalized documentation layout.
+    # Accept a pre-normalization source tree for backward-compatible
+    # installation, while every newly produced bundle is required to carry
+    # the consolidated document.
+    grep -Fqx "$PACKAGE_ROOT/source/VKMT/README.md" <<< "$listing" \
+      || grep -Fqx "$PACKAGE_ROOT/source/VKMT/README.md/" <<< "$listing" \
+      || die "archive is missing normalized package documentation"
+  fi
   if grep -Eq '(^|/)(encrypted-source/|[^/]*\.aes256$|[^/]*AES256\.key$)' <<< "$listing"; then
     die "archive unexpectedly contains encrypted source or an AES key"
   fi

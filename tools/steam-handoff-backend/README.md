@@ -6,7 +6,7 @@ It binds `127.0.0.1:9274` and never enables TSO.
 Endpoints:
 
 - `GET /status` reports the accepted-cycle count and active operation.
-- `POST /steam/handoff` acknowledges one handoff, shuts down only the Phase 6
+- `POST /steam/handoff` acknowledges one handoff, shuts down only the Workstream 6
   prefix's wineserver, and launches its installed `Steam.exe`. Exactly two
   handoffs are accepted per backend lifetime; concurrent and excess requests
   are rejected.

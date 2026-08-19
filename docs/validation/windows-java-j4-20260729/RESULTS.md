@@ -1,6 +1,6 @@
-# Windows Java phase J4 acceptance
+# Windows Java Workstream J4 acceptance
 
-Phase J4 passed on 2026-07-29 with:
+Workstream J4 passed on 2026-07-29 with:
 
 ```text
 VKMT_WINDOWS_JAVA_J4_MEMORY_MODEL_OK
@@ -72,7 +72,7 @@ operations before class dispatch failed inside `jvm.dll`; the side candidate
 showed the same ownership boundary.
 
 That experiment is not part of J4 acceptance. It is preserved in the
-`diagnostic-*` files here because phase J5 explicitly owns GC safepoints while
+`diagnostic-*` files here because Workstream J5 explicitly owns GC safepoints while
 other threads allocate and execute compiled code, plus repeated VM lifecycle.
 J5 must resolve and regress this behavior rather than weakening or silently
 discarding it.

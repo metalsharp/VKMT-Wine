@@ -79,7 +79,7 @@ After the final J5 build, `scripts/probe-i386-wow64-phase4.sh` passed:
 - `VKMT i386 WoW64 execution contract passed`
 
 The probe scripts stop and wait for the exact wineserver and delete their
-exact disposable run roots. No J5 or Phase 4 prefix, Java fixture process, or
+exact disposable run roots. No J5 or Workstream 4 prefix, Java fixture process, or
 Wine fixture process remained after acceptance.
 
 ## Reproducibility
@@ -88,6 +88,6 @@ Wine fixture process remained after acceptance.
 - `patches/wine-11.12-java-j5.patch`
 
 Both patches passed `git apply --check` against their recorded source commits.
-Raw launch summaries are in `RESULTS.txt`; compilation, phase, context, and
+Raw launch summaries are in `RESULTS.txt`; compilation, workstream, context, and
 cycle markers are in `compilation-and-cycles.txt`; JNI exports are in
 `jni-i386-exports.txt`.

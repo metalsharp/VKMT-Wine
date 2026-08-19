@@ -6,7 +6,7 @@ set -euo pipefail
 VKMT="$(cd "$(dirname "$0")/.." && pwd -P)"
 BUILD="${WINEBUILDDIR:-$VKMT/wine/build-ec}"
 PREFIX="${VKMT_GRAPHICS_PREFIX:-$VKMT/build/probe-runs/phase-a-graphics-prefix}"
-EVIDENCE="${VKMT_GRAPHICS_INFRA_EVIDENCE:-$VKMT/docs/validation/graphics-infrastructure-p8}"
+EVIDENCE="${VKMT_GRAPHICS_INFRA_EVIDENCE:-$VKMT/docs/validation/graphics-infrastructure-final}"
 TOOL="$VKMT/toolchains/llvm-mingw-20260616-ucrt-macos-universal/bin"
 
 die() { echo "graphics-infrastructure: $*" >&2; exit 1; }

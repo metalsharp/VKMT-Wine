@@ -6,7 +6,7 @@ wine_source="$vkmt_root/wine/wine-11.12"
 wine_build="$vkmt_root/wine/build-ec"
 fex_source="$vkmt_root/third_party/FEX-2607"
 stamp=$(date -u +%Y%m%dT%H%M%SZ)
-output=${1:-"$vkmt_root/docs/validation/no-tso-phase0-$stamp"}
+output=${1:-"$vkmt_root/docs/validation/no-tso-baseline-$stamp"}
 
 case "$output" in
     "$vkmt_root"/*) ;;

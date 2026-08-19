@@ -16,7 +16,7 @@ SOURCE_CDN="$VKMT/test/no_tso_phase1_cdn.c"
 XTAJIT64_BOOTSTRAP="$BUILD/dlls/xtajit64/aarch64-windows/xtajit64.dll"
 XTAJIT_BOOTSTRAP="$BUILD/dlls/xtajit/aarch64-windows/xtajit.dll"
 
-DEFAULT_CANDIDATES="$VKMT/docs/validation/no-tso-phase0-20260731T013101Z/candidates"
+DEFAULT_CANDIDATES="$VKMT/docs/validation/no-tso-baseline-20260731T013101Z/candidates"
 export VKMT_XTAJIT_SOURCE="${VKMT_XTAJIT_SOURCE:-$DEFAULT_CANDIDATES/xtajit-authoritative-v12.dll}"
 export VKMT_XTAJIT_SHA256="${VKMT_XTAJIT_SHA256:-b2a24e4585b44119b1d8ff9a8907987036ab8ed7992d6dcb148600fbaba4422e}"
 export VKMT_XTAJIT64_SOURCE="${VKMT_XTAJIT64_SOURCE:-$DEFAULT_CANDIDATES/xtajit64-authoritative-v12.dll}"

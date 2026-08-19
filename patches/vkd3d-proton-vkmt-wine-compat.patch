@@ -26,7 +26,7 @@ index f6db6954..0a20e33f 100644
 +        /* VKMT: MoltenVK reports 16-byte texel buffer alignment (Metal
 +         * minimumTextureBufferAlignment). Demote to a warning; typed buffer
 +         * views whose byte offset is not 16-aligned may fail until MoltenVK
-+         * gains offset emulation. Tracked in VKMT docs/GAPS.md. */
++         * gains offset emulation. Tracked in VKMT docs/graphics.md. */
 +        WARN("Lacking support for single texel alignment; continuing anyway (VKMT).\n");
      }
  

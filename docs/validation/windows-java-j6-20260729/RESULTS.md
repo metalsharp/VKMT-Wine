@@ -1,4 +1,4 @@
-# Windows Java phase J6 acceptance
+# Windows Java Workstream J6 acceptance
 
 J6 completed on 2026-07-29. The final accepted runtime uses the promoted J5
 i386/WoW64 provider and the established x86_64 provider:
@@ -29,7 +29,7 @@ markers are in `RESULTS.txt`.
 
 The final canonical build then passed, without provider override variables:
 
-- the complete Phase 4 WoW64 contract: load, syscall return, TLS, context,
+- the complete Workstream 4 WoW64 contract: load, syscall return, TLS, context,
   SEH, APC, second thread, callback return, and repeated thread lifecycle;
 - i386 VKMT DLL loading, DXGI adapter enumeration, D3D12
   queue/fence/copy/readback, and D3D11 clear/copy/readback;

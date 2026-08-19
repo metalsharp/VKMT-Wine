@@ -1,6 +1,6 @@
 # Windows Java J1 interpreter acceptance
 
-Phase J1 passed on 2026-07-29 with:
+Workstream J1 passed on 2026-07-29 with:
 
 ```sh
 scripts/probe-windows-java-j1-interpreters.sh

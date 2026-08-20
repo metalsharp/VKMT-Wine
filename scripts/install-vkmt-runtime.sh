@@ -5,13 +5,13 @@ set -euo pipefail
 REPO="${METALSHARP_RUNTIME_REPO:-metalsharp/VKMT-Wine}"
 TAG="${METALSHARP_RUNTIME_TAG:-v0.60.0-dependency-bundles}"
 ARCHIVE_NAME="MetalSharp-Wine-Runtime-COMPLETE-all-arch-2026-07-31.tar.zst"
-ARCHIVE_SHA256="b62e651ed723d28be007d6fc3fcdcd6f180daad8f0d2c341eeb339c4167fccee"
+ARCHIVE_SHA256="e3d7412f2e8d372c92dee645c22e42eab71512ee8c9ce39186019feb2c343a4f"
 PACKAGE_ROOT="MetalSharp-Wine-Runtime-COMPLETE-all-arch-2026-07-31"
 PART_PREFIX="${ARCHIVE_NAME}.part"
-PART01_SHA256="73f485631484dc969c6d2f724c8cabb8fc841c12b8faea8302e242048ea0f4b4"
-PART02_SHA256="cfeb09e12996db0e4cf8930476d3dbaa6d8327e9a9f71e63dfee694704501751"
-PART03_SHA256="0bb6b2dd07181c748e172dd2050ffa8498473694cdfef7825a3c6b874839dfcc"
-PART04_SHA256="9f99e039279159738cb50649c85fbcf6aa5245ac17697dbc0f61394cad6f8259"
+PART01_SHA256="d1a07532bae8c3da86eaf77e893d115ee5f6e90ce23d5a0b3faaf10ea4998bbb"
+PART02_SHA256="df6af59939f5cb00fd5aaee1899f183cd60426dcc1dddd472723dd35f27ad88c"
+PART03_SHA256="ff1c66a2fa5faa1f7719cdc0f82ecee57f33d9eed68ff03e300729778372312d"
+PART04_SHA256="88c267145d2738b5cc1a0cec851c8d1f1969afa3d8920ab36731ee2a13d7381a"
 GOG_ARCHIVE_NAME="MetalSharp-GOG-Support-arm64-1.2.2.tar.zst"
 GOG_ARCHIVE_SHA256="f13075f27d5155e84199619410936931b32310c4ec4161de992c1f727ac24155"
 GOG_PACKAGE_ROOT="MetalSharp-GOG-Support-arm64-1.2.2"
@@ -304,7 +304,11 @@ validate_archive_layout() {
     "$PACKAGE_ROOT/providers" \
     "$PACKAGE_ROOT/source/LICENSE-METALSHARP-POLYFORM-NONCOMMERCIAL.md" \
     "$PACKAGE_ROOT/metadata/SHA256SUMS" \
-    "$PACKAGE_ROOT/graphics/vkd3d-proton-macos-v1.0"; do
+    "$PACKAGE_ROOT/graphics/vkd3d-proton-macos-v1.0" \
+    "$PACKAGE_ROOT/runtime/dxmt.conf" \
+    "$PACKAGE_ROOT/scripts/verify-runtime.sh" \
+    "$PACKAGE_ROOT/dependencies/unity-mono/unity-main-6.13.0/bin/mono" \
+    "$PACKAGE_ROOT/dependencies/unity-mono/unity-main-6.13.0/BUILD-INFO.txt"; do
     grep -Fqx "$required" <<< "$listing" \
       || grep -Fqx "$required/" <<< "$listing" \
       || die "archive is missing required path: $required"

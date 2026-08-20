@@ -26,10 +26,21 @@ required=(
   "$ROOT/runtime/dxmt.conf"
   "$ROOT/scripts/vkmt-runtime-env.sh"
   "$ROOT/metadata/SHA256SUMS"
+  "$ROOT/dependencies/unity-mono/unity-main-6.13.0/bin/mono"
+  "$ROOT/dependencies/unity-mono/unity-main-6.13.0/lib/libmonosgen-2.0.1.dylib"
+  "$ROOT/dependencies/unity-mono/unity-main-6.13.0/BUILD-INFO.txt"
 )
 for path in "${required[@]}"; do
   [ -e "$path" ] || die "missing $path"
 done
+
+for unity_mono in \
+  "$ROOT/dependencies/unity-mono/unity-main-6.13.0/bin/mono" \
+  "$ROOT/dependencies/unity-mono/unity-main-6.13.0/lib/libmonosgen-2.0.1.dylib"; do
+  [ "$(/usr/bin/lipo -archs "$unity_mono")" = arm64 ] || die "non-ARM64 Unity Mono artifact: $unity_mono"
+done
+grep -Fqx 'version=6.13.0' "$ROOT/dependencies/unity-mono/unity-main-6.13.0/BUILD-INFO.txt" ||
+  die 'Unity Mono build metadata mismatch'
 
 for host in "$ROOT/wine/build-ec/wine" "$ROOT/wine/build-ec/server/wineserver"; do
   [ "$(/usr/bin/lipo -archs "$host")" = arm64 ] || die "non-ARM64 host: $host"

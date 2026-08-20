@@ -8,8 +8,10 @@ x86_64, or i386. No Rosetta bridge, tracing configuration, disposable prefix,
 cache, log, test, probe, or generated evidence file may be included.
 
 Separately licensed payloads are shipped only with a matching license and
-source/hash receipt. FMOD and Unity-specific Mono remain external integration
-inputs; FAudio and Wine Mono are the included compatibility routes.
+source/hash receipt. The release includes a source-built ARM64 Unity Mono
+BleedingEdge engine and managed profiles; FAudio and Wine Mono remain the
+redistributable compatibility routes. Proprietary FMOD runtime libraries are
+not synthesized or copied without a valid redistributable SDK receipt.
 
 ## Required runtime inventory
 
@@ -25,6 +27,7 @@ inputs; FAudio and Wine Mono are the included compatibility routes.
 | DXMT defaults | `runtime/dxmt.conf` | exact four option values |
 | Native media | `wine/build-ec/runtime/gstreamer-arm64` and CoreAudio | ARM64 closure and manifest |
 | Managed/FNA | `dependencies/wine-mono/wine-mono-11.2.0` | ARM64/x86_64/i386 payloads |
+| Unity Mono | `dependencies/unity-mono/unity-main-6.13.0` | ARM64 native engine and build receipt |
 | Fonts | `wine/wine-11.12/fonts` and build font closure | present and relocatable |
 | Receipts | `metadata/SHA256SUMS`, `metadata/PROVENANCE.txt` | verified before activation |
 

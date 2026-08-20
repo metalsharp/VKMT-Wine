@@ -88,6 +88,10 @@ find "$stage_root/scripts" "$stage_root/source/VKMT/scripts" -type f \
      -o -name '*phase*.sh' -o -name '*p[1-8]*.sh' \) -delete 2>/dev/null || true
 rm -rf "$stage_root/source/VKMT/test" "$stage_root/source/VKMT/docs/validation" \
   "$stage_root/build"
+# The standalone installer is shipped at the archive root. Keeping a second
+# copy inside the source snapshot would create a self-referential checksum
+# problem whenever its pinned archive hash changes.
+rm -f "$stage_root/source/VKMT/scripts/install-vkmt-runtime.sh"
 find "$stage_root/source/VKMT/docs" -type f \
   \( -iname 'audit*.md' -o -iname '*roadmap*.md' -o -iname 'plan.md' \
      -o -iname '*plan*.md' -o -iname '*phase*.md' \) -delete 2>/dev/null || true

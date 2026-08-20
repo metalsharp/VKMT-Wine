@@ -32,9 +32,11 @@ member was accepted.
 - The developer SDK's embedded runtime and graphics hashes do not match the
   current release assets, so release metadata must be treated as provenance,
   not as a current package manifest.
-- FMOD and Unity-specific Mono distributions require their licensed SDKs and
-  version-matched sources. VKMT ships the redistributable FAudio and Wine Mono
-  compatibility routes instead of fabricating proprietary replacements.
+- A source-built ARM64 Unity Mono BleedingEdge 6.13.0 engine and its managed
+  profiles are included under `dependencies/unity-mono/`, with a revision and
+  build receipt. Proprietary FMOD SDK binaries are not present because no
+  redistributable SDK receipt was available; FAudio and Wine Mono provide the
+  included compatibility routes rather than a fabricated FMOD replacement.
 
 ## VKMT defaults
 

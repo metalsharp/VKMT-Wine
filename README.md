@@ -10,8 +10,8 @@ ARM64; x86_64 and i386 are guest code only.
 - Wine 11.12 with ARM64, ARM64EC/ARM64X, x86_64, and i386 guest stages.
 - Native ARM64 FEX-derived CPU providers for x86_64 and i386/WoW64.
 - DXMT, DXVK, VKD3D-Proton, MoltenVK, and OpenGL/Metal graphics routes.
-- FAudio, CoreAudio, SDL, GStreamer, fonts, Wine Mono/FNA/XNA, and managed
-  runtime integration.
+- FAudio, CoreAudio, SDL, GStreamer, fonts, Wine Mono/FNA/XNA, and a
+  source-built ARM64 Unity Mono BleedingEdge runtime.
 - Transactional external-drive packaging with hash receipts and a default
   DXMT profile at `runtime/dxmt.conf`.
 
@@ -85,10 +85,10 @@ not in the source or runtime package.
 ## Boundaries
 
 D3D9, DXMT, browser engines, Java, Mono, and installer support are each
-accepted according to the files and providers actually shipped. FMOD and
-Unity-specific Mono distributions are not copied or fabricated without their
-licensed SDKs and version-matched sources; FAudio and Wine Mono are the
-redistributable compatibility routes.
+accepted according to the files and providers actually shipped. FMOD SDK
+binaries are not copied without a redistributable SDK receipt; FAudio and
+Wine Mono are the included compatibility routes. Unity Mono BleedingEdge is
+included as a source-built ARM64 runtime with a build receipt.
 
 ## License
 

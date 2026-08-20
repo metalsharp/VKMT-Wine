@@ -112,6 +112,10 @@ This package is an Apple-Silicon-native Wine runtime. The host Wine,
 wineserver, Unix providers, and native media libraries are ARM64. Windows
 guest modules cover ARM64/AArch64, ARM64EC, x86_64, and i386/WoW64.
 
+FEX xtajit64 and xtajit are required providers for the x86_64 and i386/WoW64
+guest lanes. The complete component inventory is in
+source/VKMT/docs/runtime-inventory.md.
+
 Use wine/bin/metalsharp-wine or wine/bin/wine. Set WINEPREFIX to a prefix
 outside this runtime. The launcher sets the no-TSO contract and loads the
 default runtime/dxmt.conf profile. Disposable validation tools and evidence

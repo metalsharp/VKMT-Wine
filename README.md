@@ -57,8 +57,9 @@ the exact bytes in a particular build.
 
 GitHub Actions runs portable checks for shell syntax and ShellCheck, Python
 compilation and Ruff, Rust formatting/Clippy/tests, a CMake configure/build/test
-smoke project, and Java compilation/execution. The CI-only fixtures are kept
-out of redistributable runtime source snapshots.
+smoke project, and Java compilation/execution. CodeQL security analysis covers
+C/C++, Java, Rust, and Python; ShellCheck is the shell security analyzer. The
+CI-only fixtures are kept out of redistributable runtime source snapshots.
 
 ## License
 

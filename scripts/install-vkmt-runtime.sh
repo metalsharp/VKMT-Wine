@@ -5,13 +5,13 @@ set -euo pipefail
 REPO="${METALSHARP_RUNTIME_REPO:-metalsharp/VKMT-Wine}"
 TAG="${METALSHARP_RUNTIME_TAG:-v0.60.0-dependency-bundles}"
 ARCHIVE_NAME="MetalSharp-Wine-Runtime-COMPLETE-all-arch-2026-07-31.tar.zst"
-ARCHIVE_SHA256="e3d7412f2e8d372c92dee645c22e42eab71512ee8c9ce39186019feb2c343a4f"
+ARCHIVE_SHA256="650654c6c68236a8bd1f79ef9775db26d485283ae82935fd717e9d67c968b0f3"
 PACKAGE_ROOT="MetalSharp-Wine-Runtime-COMPLETE-all-arch-2026-07-31"
 PART_PREFIX="${ARCHIVE_NAME}.part"
-PART01_SHA256="d1a07532bae8c3da86eaf77e893d115ee5f6e90ce23d5a0b3faaf10ea4998bbb"
-PART02_SHA256="df6af59939f5cb00fd5aaee1899f183cd60426dcc1dddd472723dd35f27ad88c"
-PART03_SHA256="ff1c66a2fa5faa1f7719cdc0f82ecee57f33d9eed68ff03e300729778372312d"
-PART04_SHA256="88c267145d2738b5cc1a0cec851c8d1f1969afa3d8920ab36731ee2a13d7381a"
+PART01_SHA256="629d9b0cbf56a8a7ee989f7596c4907caf76f0b72d2042e8027a51e18a85b2bf"
+PART02_SHA256="2902d0991c0b005bdce34a43d677e2c68219f658c46cf45189b170c38d6e097d"
+PART03_SHA256="e97795c94c309d9c8a624d2001e35b83989affc6d43cbd4f1c3d9c21f5ed33d4"
+PART04_SHA256="ec17b9a80fa0597139d6fa907576e7fba7dc9c66e09fc5d449016801c19bb320"
 GOG_ARCHIVE_NAME="MetalSharp-GOG-Support-arm64-1.2.2.tar.zst"
 GOG_ARCHIVE_SHA256="f13075f27d5155e84199619410936931b32310c4ec4161de992c1f727ac24155"
 GOG_PACKAGE_ROOT="MetalSharp-GOG-Support-arm64-1.2.2"
@@ -308,7 +308,11 @@ validate_archive_layout() {
     "$PACKAGE_ROOT/runtime/dxmt.conf" \
     "$PACKAGE_ROOT/scripts/verify-runtime.sh" \
     "$PACKAGE_ROOT/dependencies/unity-mono/unity-main-6.13.0/bin/mono" \
-    "$PACKAGE_ROOT/dependencies/unity-mono/unity-main-6.13.0/BUILD-INFO.txt"; do
+    "$PACKAGE_ROOT/dependencies/unity-mono/unity-main-6.13.0/BUILD-INFO.txt" \
+    "$PACKAGE_ROOT/dependencies/unity-mono/unity-6000.1-mbe-6.13.0/bin/mono" \
+    "$PACKAGE_ROOT/dependencies/unity-mono/unity-6000.1-mbe-6.13.0/BUILD-INFO.txt" \
+    "$PACKAGE_ROOT/dependencies/unity-mono/unity-2022.3-mbe-6.13.0/bin/mono" \
+    "$PACKAGE_ROOT/dependencies/unity-mono/unity-2022.3-mbe-6.13.0/BUILD-INFO.txt"; do
     grep -Fqx "$required" <<< "$listing" \
       || grep -Fqx "$required/" <<< "$listing" \
       || die "archive is missing required path: $required"

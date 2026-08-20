@@ -27,7 +27,7 @@ not synthesized or copied without a valid redistributable SDK receipt.
 | DXMT defaults | `runtime/dxmt.conf` | exact four option values |
 | Native media | `wine/build-ec/runtime/gstreamer-arm64` and CoreAudio | ARM64 closure and manifest |
 | Managed/FNA | `dependencies/wine-mono/wine-mono-11.2.0` | ARM64/x86_64/i386 payloads |
-| Unity Mono | `dependencies/unity-mono/unity-main-6.13.0` | ARM64 native engine and build receipt |
+| Unity Mono | `dependencies/unity-mono/{unity-main,unity-6000.1-mbe,unity-2022.3-mbe}-6.13.0` | three ARM64 native engines and build receipts |
 | Fonts | `wine/wine-11.12/fonts` and build font closure | present and relocatable |
 | Receipts | `metadata/SHA256SUMS`, `metadata/PROVENANCE.txt` | verified before activation |
 

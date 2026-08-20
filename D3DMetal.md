@@ -322,6 +322,13 @@ contract:
     ./scripts/verify-d3dmetal-runtime.sh \
       --runtime-root /path/to/private/vkmt-runtime
 
+The provider ABI receipt can be inspected independently with:
+
+    nm -gU /path/to/private/vkmt-runtime/graphics/d3dmetal/external/libd3dshared.dylib \
+      | grep '___wine_unix_call_funcs$'
+    nm -gU /path/to/private/vkmt-runtime/graphics/d3dmetal/external/D3DMetal.framework/Versions/Current/D3DMetal \
+      | grep -E '(_CreateDXGIFactory|_D3D11CreateDevice|_D3D12CreateDevice|_GFXT_Initialize)$'
+
 The installed GPTK 3.0-2 rejection was recorded with:
 
     provider must be arm64-only: .../libd3dshared.dylib (x86_64)

@@ -191,6 +191,10 @@ The runtime source snapshot retains:
 The source and runtime provenance records pin Wine, FEX, DXMT, MoltenVK, and
 innoextract revisions. The exact list is in metadata/PROVENANCE.txt.
 
+VKMT-authored repository material is covered by the root [MIT License](../LICENSE).
+That license does not replace the upstream licenses or commercial terms for
+the bundled runtime components; see [third-party licenses](third-party-licenses.md).
+
 ## Metadata and verification
 
 The following files provide the release receipts and are included with the

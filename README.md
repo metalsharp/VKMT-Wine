@@ -1,6 +1,15 @@
+<div align="center">
+
 # VKMT Wine
 
-[![Release](https://img.shields.io/github/v/release/metalsharp/VKMT-Wine?label=release)](https://github.com/metalsharp/VKMT-Wine/releases)
+**Cross-architecture ARM64 Wine with FEX for Apple Silicon macOS.**
+
+<a href="https://github.com/metalsharp/VKMT-Wine/releases/tag/v0.60.0-dependency-bundles"><img src="https://img.shields.io/github/v/release/metalsharp/VKMT-Wine?filter=v0.60.0-dependency-bundles&style=for-the-badge" alt="Release"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License: MIT for VKMT-authored material"></a>
+
+</div>
+
+---
 
 VKMT Wine is an Apple-Silicon-native, cross-architecture Wine runtime for
 macOS. The Wine host and native Unix boundary are ARM64; FEX supplies the
@@ -52,6 +61,7 @@ the exact bytes in a particular build.
 
 ## License
 
-VKMT combines Wine, FEX, DXMT, DXVK, VKD3D-Proton, MoltenVK, Mono, and other
-upstream components. Their license texts and notices are retained with the
-runtime source and release assets; see the [third-party license index](docs/third-party-licenses.md).
+VKMT-authored repository material is MIT licensed; see [LICENSE](LICENSE).
+Wine, FEX, DXMT, DXVK, VKD3D-Proton, MoltenVK, Mono, and other bundled
+components retain their own licenses. See the [third-party license index](docs/third-party-licenses.md)
+before redistributing the runtime.

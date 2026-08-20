@@ -194,6 +194,11 @@ symlinks under:
 
     wine/lib/external/
 
+This matches the current VKMT runtime tree. The native host executable is
+located at `wine/build-ec/tools/wine/wine` in the current staged snapshot;
+the staging and verification scripts also accept the legacy build-root host
+path when operating on an older generated build directory.
+
 The script currently prints that activation remains blocked until the VKMT
 Wine loader contract is installed. That contract is an implementation item,
 not a reason to reject Sikarugir's working D3DMetal design; merely copying a

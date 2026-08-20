@@ -5,21 +5,21 @@ boundary is ARM64; FEX provides the x86_64 and i386/WoW64 guest routes.
 
 ## Install VKMT-1.0
 
-Requirements: Apple Silicon macOS, an external target volume with at least
-19,000,000 KiB free, `curl`, and `zstd`. Install `zstd` with Homebrew if it
-is not already available:
+Requirements: Apple Silicon macOS, an internal or external target volume with
+at least 19,000,000 KiB free, `curl`, and `zstd`. Install `zstd` with Homebrew
+if it is not already available:
 
 ```sh
 brew install zstd
 ```
 
-Download the installer from the [VKMT-1.0 release](https://github.com/metalsharp/VKMT-Wine/releases/tag/VKMT-1.0), make it executable, and select an external target:
+Download the installer from the [VKMT-1.0 release](https://github.com/metalsharp/VKMT-Wine/releases/tag/VKMT-1.0), make it executable, and select any internal or external target:
 
 ```sh
 curl -fL -o install-vkmt-runtime.sh \
   https://github.com/metalsharp/VKMT-Wine/releases/download/VKMT-1.0/install-metalsharp-wine-runtime.sh
 chmod +x install-vkmt-runtime.sh
-./install-vkmt-runtime.sh --target /Volumes/VKMT-runtime
+./install-vkmt-runtime.sh --target "$HOME/.local/share/vkmt-runtime"
 ```
 
 The installer downloads or reuses the four verified runtime parts and the

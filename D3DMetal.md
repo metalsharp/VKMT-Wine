@@ -46,6 +46,12 @@ repository at:
 
 They are audit inputs, not runtime dependencies.
 
+The published VKMT-1.0 release manifest was also checked directly from GitHub:
+`metalsharp-bundle-manifest.tsv` has nine release entries and no D3DMetal,
+GPTK, libd3dshared, or x86_64-unix entry. Its runtime note explicitly
+identifies the archive as a clean runtime with no audits or roadmaps. The
+public release therefore remains D3DMetal-free by design.
+
 ## What Sikarugir actually implements
 
 The public Sikarugir repository contains the Apple license, acknowledgements,

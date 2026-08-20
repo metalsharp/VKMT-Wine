@@ -77,7 +77,7 @@ fi
 rm -rf "$stage_root/source/VKMT"
 mkdir -p "$stage_root/source/VKMT"
 (cd "$VKMT" && tar -cf - \
-    --exclude='./.git' --exclude='./build' --exclude='./wine' \
+    --exclude='./.git' --exclude='./.github' --exclude='./build' --exclude='./ci' --exclude='./wine' \
     --exclude='./third_party' --exclude='./toolchains' --exclude='./docs/validation' \
     .) | tar -xf - -C "$stage_root/source/VKMT"
 

@@ -3,7 +3,10 @@
 # binaries. LLVM's Windows-aarch64 TLS lowering hardcodes x18 (TEB.TlsSlots);
 # VKMT keeps the TEB in x28. Safe because all our PE code is built with
 # -ffixed-x18, so no legitimate x18 allocation remains in .text.
-import re, struct, subprocess, sys
+import re
+import struct
+import subprocess
+import sys
 
 BIN = "/Volumes/AverySSD/VKMT/toolchains/llvm-mingw-20260616-ucrt-macos-universal/bin"
 

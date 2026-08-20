@@ -106,7 +106,10 @@ fn relaunch_steam() -> Result<u32, String> {
         .env("GI_TYPELIB_PATH", gst.join("girepository-1.0"))
         .env("GST_PLUGIN_PATH_1_0", gst.join("lib/gstreamer-1.0"))
         .env("GST_PLUGIN_SYSTEM_PATH_1_0", gst.join("lib/gstreamer-1.0"))
-        .env("GST_PLUGIN_SCANNER_1_0", gst.join("libexec/gstreamer-1.0/gst-plugin-scanner"))
+        .env(
+            "GST_PLUGIN_SCANNER_1_0",
+            gst.join("libexec/gstreamer-1.0/gst-plugin-scanner"),
+        )
         .env("GST_REGISTRY", gst_registry)
         .env("FEX_TSOENABLED", "0")
         .env("FEX_VECTORTSOENABLED", "0")

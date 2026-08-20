@@ -3,7 +3,7 @@
 set -euo pipefail
 
 REPO="${METALSHARP_RUNTIME_REPO:-metalsharp/VKMT-Wine}"
-TAG="${METALSHARP_RUNTIME_TAG:-v0.60.0-dependency-bundles}"
+TAG="${METALSHARP_RUNTIME_TAG:-VKMT-1.0}"
 ARCHIVE_NAME="MetalSharp-Wine-Runtime-COMPLETE-all-arch-2026-07-31.tar.zst"
 ARCHIVE_SHA256="02f42be17c776629ca786e8689aef7069d4300151e69ef95f8ac68f9bdd9d3a8"
 PACKAGE_ROOT="MetalSharp-Wine-Runtime-COMPLETE-all-arch-2026-07-31"

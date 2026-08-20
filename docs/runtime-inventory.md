@@ -9,7 +9,7 @@ receipts remain authoritative for the exact file list and bytes.
 
 | Field | Value |
 | --- | --- |
-| Release | [v0.60.0-dependency-bundles](https://github.com/metalsharp/VKMT-Wine/releases/tag/v0.60.0-dependency-bundles) |
+| Release | [VKMT-1.0](https://github.com/metalsharp/VKMT-Wine/releases/tag/VKMT-1.0) |
 | Runtime archive | MetalSharp-Wine-Runtime-COMPLETE-all-arch-2026-07-31.tar.zst |
 | Runtime archive SHA-256 | 02f42be17c776629ca786e8689aef7069d4300151e69ef95f8ac68f9bdd9d3a8 |
 | Release shape | One zstd archive split into four ordered parts |

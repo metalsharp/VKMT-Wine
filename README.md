@@ -4,7 +4,7 @@
 
 **Cross-architecture ARM64 Wine with FEX for Apple Silicon macOS.**
 
-<a href="https://github.com/metalsharp/VKMT-Wine/releases/tag/v0.60.0-dependency-bundles"><img src="https://img.shields.io/github/v/release/metalsharp/VKMT-Wine?filter=v0.60.0-dependency-bundles&style=for-the-badge" alt="Release"></a>
+<a href="https://github.com/metalsharp/VKMT-Wine/releases/tag/VKMT-1.0"><img src="https://img.shields.io/github/v/release/metalsharp/VKMT-Wine?filter=VKMT-1.0&style=for-the-badge" alt="Release"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License: MIT for VKMT-authored material"></a>
 
 </div>

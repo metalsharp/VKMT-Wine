@@ -116,6 +116,10 @@ FEX xtajit64 and xtajit are required providers for the x86_64 and i386/WoW64
 guest lanes. The complete component inventory is in
 source/VKMT/docs/runtime-inventory.md.
 
+Installation and launch instructions are in
+source/VKMT/docs/quick-start.md. The architecture and integration model is
+in source/VKMT/docs/architecture.md.
+
 Use wine/bin/metalsharp-wine or wine/bin/wine. Set WINEPREFIX to a prefix
 outside this runtime. The launcher sets the no-TSO contract and loads the
 default runtime/dxmt.conf profile. Disposable validation tools and evidence

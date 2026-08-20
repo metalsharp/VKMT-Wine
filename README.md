@@ -33,21 +33,13 @@ variants.
 
 ## Quick start
 
-Download the [latest runtime release](https://github.com/metalsharp/VKMT-Wine/releases),
-install it to an external volume, and keep the Wine prefix outside the runtime:
-
-~~~sh
-export VKMT_RUNTIME_ROOT=/Volumes/VKMT-runtime
-export WINEPREFIX=/Volumes/VKMT-prefix
-"$VKMT_RUNTIME_ROOT/wine/bin/metalsharp-wine" winecfg
-~~~
-
-The launcher selects the bundled native dependencies, disables hardware TSO
-for FEX, and loads the default DXMT profile.
+See the [Quick Start](docs/quick-start.md) for verified installation and
+launch commands.
 
 ## Documentation
 
 - [Complete runtime inventory](docs/runtime-inventory.md)
+- [Quick Start](docs/quick-start.md)
 - [Project overview](docs/project-overview.md)
 - [Architecture](docs/architecture.md)
 - [Graphics](docs/graphics.md)

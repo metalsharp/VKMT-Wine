@@ -47,6 +47,7 @@ launch commands.
 - [Packaging and validation](docs/package-and-validation.md)
 - [MetalSharp integration](docs/metalsharp-integration.md)
 - [Third-party license index](docs/third-party-licenses.md)
+- [Security policy](SECURITY.md)
 
 The complete inventory is the component-level description of the shipped
 runtime. The release's file hashes and asset manifest remain authoritative for

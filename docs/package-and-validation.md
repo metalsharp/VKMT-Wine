@@ -51,10 +51,11 @@ not synthesized or copied without a valid redistributable SDK receipt.
 ## Current release receipt
 
 The clean runtime archive prepared for publication at
-`v0.60.0-dependency-bundles` has SHA-256
-`1a0047c9e260372d76caa7e4ee674b682f8ca26d33c870e02897a49af58ca84c`.
-It includes ARM64 DXVK D3D10, D3D10.1, D3D11, D3D9, and DXGI lanes plus
-Unity Mono engines from the current, Unity 6000.1, and Unity 2022.3 branches.
+`v0.60.0-dependency-bundles` includes ARM64 DXVK D3D10, D3D10.1, D3D11,
+D3D9, and DXGI lanes plus Unity Mono engines from the current, Unity 6000.1,
+and Unity 2022.3 branches. The release asset manifest and
+`PARTS-SHA256SUMS.txt` are the authoritative hash receipt for each published
+asset.
 The fresh external install passed `VKMT_RUNTIME_VERIFIED`, `WINEBOOT_RC0`,
 and the four-lane single-prefix acceptance result. Raw logs and temporary
 prefixes are retained only in the external workspace, never in this checkout

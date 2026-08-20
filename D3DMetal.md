@@ -2,10 +2,12 @@
 
 ## Executive result
 
-The Sikarugir audit is complete. Sikarugir is a Wineskin-style wrapper and
-configuration project; it does not contain a D3DMetal implementation or a
-redistributable D3DMetal binary. Its D3DMetal behavior is an enable/disable
-selection around an Apple Game Porting Toolkit (GPTK) Wine engine.
+The Sikarugir audit is complete. Sikarugir is a working Wineskin-style
+wrapper and configuration implementation for Apple Game Porting Toolkit
+(GPTK) D3DMetal. Its implementation is the engine-selection logic, required
+Wine filesystem layout, and runtime configuration; the proprietary D3DMetal
+provider is supplied by the selected GPTK engine rather than reimplemented in
+Sikarugir's open-source repository.
 
 The current VKMT release is a different architecture:
 
@@ -17,23 +19,22 @@ The current VKMT release is a different architecture:
 
 The observed GPTK/D3DMetal payload in the existing bundle catalog is
 x86_64 Mach-O and expects an x86_64-unix Wine closure. The current VKMT
-runtime has an ARM64 host and no x86_64-unix Wine closure. FEX translates
-Windows guest PE code; it does not translate an x86_64 macOS Mach-O
-framework into an ARM64 native host library.
+runtime has an ARM64 host and a working FEX x86_64/i386 Windows guest path,
+but it does not yet expose the D3DMetal provider boundary required by the
+Sikarugir engine layout. That is the adaptation work for this phase.
 
-Therefore the old GPTK payload cannot be copied into VKMT, and D3DMetal
-cannot honestly be marked supported by the current runtime. This document
-implements the safe intake, architecture, licensing, and fail-closed
-activation work. Full runtime support remains gated on a matching
-Apple-provided ARM64 D3DMetal payload and a compatible ARM64 VKMT Wine
-adapter. No proprietary Apple binary is committed to this repository.
+This document therefore treats Sikarugir's working D3DMetal pipeline as the
+integration contract: preserve its provider layout and engine-selection
+semantics, conform the guest/host transitions to VKMT's ARM64 runtime, and
+prove the resulting D3D11/D3D12 path. No proprietary Apple binary is
+committed to this repository.
 
 ## Audited source and evidence
 
 | Source | Revision | Audited contents | Result |
 | --- | --- | --- | --- |
-| Sikarugir | 39710f11e0b9a1b4a1a7110ef8c8ad6fbf1fe786 | 20 tracked files: README, one image, issue metadata, and 12 D3DMetal PDFs covering 1.1, 2.0, 2.1, and 3.0 | No implementation or binary payload |
-| Sikarugir FOSS sources | 4be1b048f8df14b073a6e39e8245bbb52c6a71c0 | 75 tracked source/project files; LGPL-2.1 license | Wrapper/configuration code only |
+| Sikarugir | 39710f11e0b9a1b4a1a7110ef8c8ad6fbf1fe786 | 20 tracked files: README, one image, issue metadata, and 12 D3DMetal PDFs covering 1.1, 2.0, 2.1, and 3.0 | Working wrapper documentation and provider contract |
+| Sikarugir FOSS sources | 4be1b048f8df14b073a6e39e8245bbb52c6a71c0 | 75 tracked source/project files; LGPL-2.1 license | Working engine-selection/configuration layer; GPTK supplies the provider |
 | Local binary catalog | docs/metalsharp-bundle-files.tsv | Historical GPTK members and hashes | D3DMetal and helper Mach-O members are x86_64 |
 | Installed GPTK 3.0-2 | /Applications/Game Porting Toolkit.app/Contents/Resources/wine/lib | External D3DMetal framework, libd3dshared.dylib, and x86_64-unix Wine closure | All inspected native members are x86_64; rejected by the staging gate |
 | Current published runtime tree | /Volumes/AverySSD/VKMT-roadmap-2/fresh-install-published | ARM64 Wine host and current graphics/runtime closure | No D3DMetal payload or x86_64-unix Wine lane |
@@ -62,7 +63,8 @@ Mach-O `arm64`. The public release therefore remains D3DMetal-free by design.
 
 The public Sikarugir repository contains the Apple license, acknowledgements,
 and versioned GPTK read-me documents. The FOSS source repository contains the
-configuration UI and wrapper metadata.
+configuration UI and wrapper metadata that makes the D3DMetal engine work
+when paired with the GPTK provider.
 
 The relevant FOSS behavior is:
 
@@ -73,9 +75,9 @@ The relevant FOSS behavior is:
    translated-process requirement.
 4. When the marker and lib/wine/x86_64-unix/ntdll.so are present, it treats
    D3DMetal as forced and disables DXVK.
-5. Selecting D3DMetal disables DXMT and DXVK, enables the CrossOver-MoltenVK
-   compatibility flag used by that engine, and disables fast-math and msync
-   controls for the forced engine.
+5. Selecting D3DMetal disables alternate translation-layer selections, enables
+   the CrossOver-MoltenVK compatibility flag used by that engine, and disables
+   fast-math and msync controls for the forced engine.
 6. The GPTK documents place the provider under the Wine engine's lib
    directory. Version 2.x documents lib/external/D3DMetal.framework and
    lib/external/libd3dshared.dylib; version 3.0 documents the complete
@@ -87,8 +89,10 @@ The relevant FOSS behavior is:
 8. HUD, Metal capture, and DXIL debug processing are diagnostic paths. They
    are not enabled by VKMT.
 
-This is an engine-selection and filesystem-layout implementation, not a
-D3DMetal source implementation.
+This is Sikarugir's working engine-selection and filesystem-layout
+implementation. The Apple provider remains an external dependency; this
+phase adapts the working path to VKMT rather than replacing it with another
+translation backend.
 
 ## D3DMetal pipeline reconstructed from the documents
 
@@ -136,8 +140,9 @@ translation shims are rejected.
 The installed GPTK 3.0-2 was also tested directly: its
 lib/external/libd3dshared.dylib and D3DMetal.framework binary report x86_64,
 and its Wine closure is under x86_64-unix. The current release verifier remains
-responsible for the ARM64 host and the FEX guest providers. D3DMetal is not a replacement for xtajit64, xtajit,
-DXMT, DXVK, MoltenVK, or VKD3D-Proton.
+responsible for the ARM64 host and the FEX guest providers. D3DMetal is an
+additional Sikarugir/GPTK graphics path and does not change the required
+xtajit64 or xtajit providers.
 
 ### Licensing gate
 
@@ -189,9 +194,10 @@ symlinks under:
 
     wine/build-ec/lib/external/
 
-The script prints that activation remains blocked until the Wine loader
-contract is installed. It does not claim that merely copying a framework
-provides D3DMetal support.
+The script currently prints that activation remains blocked until the VKMT
+Wine loader contract is installed. That contract is an implementation item,
+not a reason to reject Sikarugir's working D3DMetal design; merely copying a
+framework is insufficient without wiring its actual guest and Unix lanes.
 
 ### Provider verification
 
@@ -222,39 +228,37 @@ Metal capture, HUD, DXIL debug processing, or tracing flags.
 No file was removed from the current VKMT runtime. No D3DMetal binary was
 copied from the historical x86_64 bundle or installed GPTK. The staging gate was
 run against the installed GPTK 3.0-2 and rejected it before creating a target.
-xtajit64, xtajit, their
-compatibility variants, DXMT, DXVK, VKD3D-Proton, and the native ARM64 host
+xtajit64, xtajit, their compatibility variants, and the native ARM64 host
 remain untouched.
 
-## Remaining activation gate
+## Remaining ARM64 adaptation work
 
-The full D3DMetal execution requirement is not complete because the audited
-inputs do not provide the required implementation:
+The full D3DMetal execution requirement is not yet claimed because the
+Sikarugir/GPTK path has not been wired into the current VKMT ARM64/FEX Wine
+layout. This is an adaptation task, not a conclusion that Sikarugir's
+D3DMetal implementation is nonfunctional:
 
-- Sikarugir provides no D3DMetal source or binary.
-- The current VKMT Wine tree has no D3DMetal loader contract.
-- The current runtime has no x86_64-unix Wine closure.
-- The available historical D3DMetal Mach-O files are x86_64.
-- FEX's Windows guest translation path cannot load an x86_64 macOS Mach-O
-  framework into an ARM64 Wine host.
-- Creating an ARM64 D3DMetal implementation from Apple's proprietary binary
-  would require reverse engineering, which the supplied license prohibits.
+- represent Sikarugir's `d3dmetal_force` engine-selection contract in VKMT;
+- map the GPTK `lib/external` provider layout to the VKMT Wine build without
+  colliding with existing runtime providers;
+- connect the x86_64 Windows D3DMetal guest lane and its Unix provider
+  boundary through the current FEX/Wine transition path;
+- test the current ARM64 runtime with the actual D3DMetal provider, not only
+  a static placeholder receipt; and
+- preserve licensing, provenance, and the no-tracing policy during the
+  adaptation.
 
-A future provider can proceed only after all of these artifacts exist:
+The implementation sequence is:
 
-1. An Apple-provided, license-receipted ARM64 D3DMetal framework and
-   libd3dshared.dylib.
-2. A VKMT Wine build that implements the matching D3DMetal loader/bridge
-   contract without introducing an x86_64 macOS host lane.
-3. An architecture receipt proving the ARM64 host and x86_64/i386 Windows
-   guest lanes.
-4. A private non-commercial provenance receipt containing the exact Apple
-   license, acknowledgements, provider hashes, and Wine adapter revision.
-5. A disposable-prefix acceptance run with D3D11 and D3D12 applications,
-   with DXMT/DXVK fallback tests and no diagnostic capture enabled.
-
-Until then, VKMT_D3DMETAL_ENABLE=1 must fail closed. That behavior is
-intentional and is the reliable result of this phase.
+1. Port Sikarugir's engine marker, provider search paths, and mode-selection
+   semantics into a dedicated VKMT D3DMetal profile.
+2. Build the Wine/FEX adapter for the x86_64 guest lane while preserving the
+   ARM64 native host boundary.
+3. Stage the GPTK provider through that profile with license and provenance
+   receipts.
+4. Run disposable-prefix D3D11 and D3D12 conformance tests with no
+   diagnostic capture or tracing enabled.
+5. Promote only after runtime, architecture, and provider receipts agree.
 
 ## Acceptance matrix
 
@@ -269,8 +273,8 @@ intentional and is the reliable result of this phase.
 | Provider architecture and hashes are verified | verify-d3dmetal-runtime.sh --provider-only | Complete when a provider is supplied |
 | D3DMetal default is off | VKMT_D3DMETAL_ENABLE opt-in branch | Complete |
 | Diagnostic capture/tracing is not enabled | environment script contains no capture/debug enablement | Complete |
-| Matching ARM64 VKMT Wine adapter | VKMT-WINE-CONTRACT.txt and adapter build | Blocked by missing implementation |
-| D3DMetal D3D11/D3D12 runtime execution | disposable-prefix conformance run | Blocked by missing implementation |
+| Matching ARM64 VKMT Wine/FEX adapter | VKMT-WINE-CONTRACT.txt and adapter build | In progress |
+| D3DMetal D3D11/D3D12 runtime execution | disposable-prefix conformance run | Not yet run |
 | Public release inclusion | prohibited until legal and adapter gates pass | Intentionally not claimed |
 
 ## Reproduction commands

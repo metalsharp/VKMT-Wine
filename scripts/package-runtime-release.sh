@@ -10,7 +10,7 @@ RUNTIME_ROOT="${VKMT_RELEASE_RUNTIME_ROOT:-}"
 OUTPUT_DIR="${VKMT_RELEASE_OUTPUT_DIR:-}"
 ARCHIVE_NAME="${VKMT_RELEASE_ARCHIVE_NAME:-MetalSharp-Wine-Runtime-COMPLETE-all-arch-2026-07-31.tar.zst}"
 PACKAGE_ROOT="${VKMT_RELEASE_PACKAGE_ROOT:-MetalSharp-Wine-Runtime-COMPLETE-all-arch-2026-07-31}"
-PART_SIZE=400000000
+PART_COUNT=4
 STAGE_DIR=""
 
 die() { echo "package-runtime-release: $*" >&2; exit 1; }
@@ -96,6 +96,17 @@ find "$stage_root/scripts" "$stage_root/source/VKMT/scripts" -type f \
      -o -name '*phase*.sh' -o -name '*p[1-8]*.sh' \) -delete 2>/dev/null || true
 rm -rf "$stage_root/source/VKMT/test" "$stage_root/source/VKMT/docs/validation" \
   "$stage_root/build"
+# A runtime does not need Wine's compiler objects, generated build metadata,
+# test executables, debugger dumps, or Python bytecode. Keep every installed
+# host/guest binary and every FEX/XTajit candidate DLL, but remove only these
+# development-only surfaces from the redistributable.
+rm -rf "$stage_root/wine/build-ec/build" "$stage_root/wine/build-ec/programs/winetest"
+find "$stage_root" -type d \( -name '__pycache__' -o -name 'CMakeFiles' \) \
+  -prune -exec rm -rf {} + 2>/dev/null || true
+find "$stage_root/wine/build-ec" -type d -name tests -prune -exec rm -rf {} + 2>/dev/null || true
+find "$stage_root" -type f \( -name '*.pyc' -o -name '*.pyo' -o -name '*.o' \
+  -o -name '*.a' -o -name '*.la' -o -name 'CMakeCache.txt' -o -name 'Makefile' \) \
+  -delete 2>/dev/null || true
 # The standalone installer is shipped at the archive root. Keeping a second
 # copy inside the source snapshot would create a self-referential checksum
 # problem whenever its pinned archive hash changes.
@@ -164,11 +175,12 @@ tar -cf - -C "$STAGE_DIR" "$PACKAGE_ROOT" | \
 zstd -q --long=31 -t "$OUTPUT_DIR/$ARCHIVE_NAME"
 
 archive_size="$(stat -f %z "$OUTPUT_DIR/$ARCHIVE_NAME" 2>/dev/null || stat -c %s "$OUTPUT_DIR/$ARCHIVE_NAME")"
-[ "$archive_size" -gt "$PART_SIZE" ] || die "archive unexpectedly small: $archive_size bytes"
-split -b "$PART_SIZE" -d -a 2 "$OUTPUT_DIR/$ARCHIVE_NAME" \
+part_size=$(( (archive_size + PART_COUNT - 1) / PART_COUNT ))
+[ "$archive_size" -gt "$PART_COUNT" ] || die "archive unexpectedly small: $archive_size bytes"
+split -b "$part_size" -d -a 2 "$OUTPUT_DIR/$ARCHIVE_NAME" \
   "$OUTPUT_DIR/.${ARCHIVE_NAME}.part"
 parts=("$OUTPUT_DIR"/."$ARCHIVE_NAME".part*)
-[ "${#parts[@]}" -eq 4 ] || die "expected four parts, got ${#parts[@]}"
+[ "${#parts[@]}" -eq "$PART_COUNT" ] || die "expected four parts, got ${#parts[@]}"
 for i in 0 1 2 3; do
   mv "${parts[$i]}" "$OUTPUT_DIR/$ARCHIVE_NAME.part$(printf '%02d' "$((i + 1))")"
 done

@@ -79,6 +79,18 @@ itself is Apple's separately supplied binary. VKMT therefore keeps the
 native-only gate rather than silently reintroducing Rosetta or substituting
 another renderer.
 
+### FEX boundary
+
+The current VKMT FEX integration does not change this provider requirement.
+Its translated entrypoints are the Windows PE paths under
+`Source/Windows/ARM64EC` and `Source/Windows/WOW64`; the current source tree
+contains no Mach-O or `dyld` loader for translating an x86_64 macOS
+`D3DMetal.framework` or `libd3dshared.dylib` inside the ARM64 Wine host. FEX
+therefore translates the Windows guest lanes, but it cannot by itself turn an
+x86_64 macOS provider into a native ARM64 Unix provider. The phase must not
+claim that distinction is covered merely because FEX and Sikarugir are both
+present.
+
 ## What Sikarugir actually implements
 
 The public Sikarugir repository contains the Apple license, acknowledgements,

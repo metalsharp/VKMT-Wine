@@ -27,6 +27,19 @@ export FEX_TSOENABLED=0
 export FEX_VECTORTSOENABLED=0
 export FEX_MEMCPYSETTSOENABLED=0
 
+# Production launches are silent by default.  Profiling, Wine debug channels,
+# Vulkan call tracing, and Metal capture are diagnostic modes and must not be
+# inherited from the caller into the shipped runtime.
+export WINEDEBUG=-all
+export WINEDEBUGGER=none
+export FEX_SILENTLOG=1
+export FEX_PROFILESTATS=0
+export MVK_CONFIG_TRACE_VULKAN_CALLS=0
+export MVK_CONFIG_DEBUG=0
+export MVK_CONFIG_LOG_LEVEL=0
+export MTL_CAPTURE_ENABLED=0
+unset VKMT_PERF_RUN_ID VKMT_PERF_TRACE_HOST_DIR VKMT_PERF_ALLOW_PROVIDER_TELEMETRY_GAP
+
 # Use the shipped DXMT defaults unless an application-specific profile is
 # explicitly selected by the caller.  DXMT_CONFIG_FILE is intentionally
 # absolute so launches remain independent of the process working directory.

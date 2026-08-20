@@ -119,7 +119,7 @@ if test "${#extra_args[@]}" -gt 0; then
   launch_args+=("${extra_args[@]}")
 fi
 wine_env=(
-  WINEDEBUG="${VKMT_BROWSER_WINEDEBUG:--all}"
+  WINEDEBUG=-all
   WINEDLLOVERRIDES="${VKMT_BROWSER_WINEDLLOVERRIDES:-vulkan-1=n,b}"
   FEX_TSOENABLED=0
   FEX_VECTORTSOENABLED=0

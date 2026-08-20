@@ -39,7 +39,12 @@ done
 [ -n "$RUNTIME_ROOT" ] || usage
 [ -n "$OUTPUT_DIR" ] || usage
 [ -d "$RUNTIME_ROOT" ] || die "runtime root does not exist: $RUNTIME_ROOT"
-[ -x "$RUNTIME_ROOT/wine/build-ec/wine" ] || die "missing ARM64 Wine host"
+if [ -x "$RUNTIME_ROOT/wine/build-ec/tools/wine/wine" ]; then
+  WINE_HOST="$RUNTIME_ROOT/wine/build-ec/tools/wine/wine"
+else
+  WINE_HOST="$RUNTIME_ROOT/wine/build-ec/wine"
+fi
+[ -x "$WINE_HOST" ] || die "missing ARM64 Wine host"
 [ -x "$RUNTIME_ROOT/wine/build-ec/server/wineserver" ] || die "missing ARM64 wineserver"
 [ -f "$RUNTIME_ROOT/.metalsharp-runtime-install" ] || die "missing install receipt"
 [ ! -e "$RUNTIME_ROOT/graphics/d3dmetal" ] && [ ! -L "$RUNTIME_ROOT/graphics/d3dmetal" ] || die "private D3DMetal payload cannot enter the public package"

@@ -26,6 +26,10 @@ required=(
   "$ROOT/wine/build-ec/dxmt-v0.80/aarch64-unix/winemetal.so"
   "$ROOT/wine/build-ec/dxmt-v0.80/aarch64-windows/winemetal.dll"
   "$ROOT/wine/build-ec/dxmt-v0.80/i386-windows/winemetal.dll"
+  "$ROOT/wine/build-ec/dlls/xtajit64/aarch64-windows/xtajit64.dll"
+  "$ROOT/wine/build-ec/dlls/xtajit/aarch64-windows/xtajit.dll"
+  "$ROOT/providers/xtajit64-arm64ec-known-good.dll"
+  "$ROOT/providers/xtajit-arm64-known-good.dll"
   "$ROOT/runtime/dxmt.conf"
   "$ROOT/scripts/vkmt-runtime-env.sh"
   "$ROOT/metadata/SHA256SUMS"
@@ -61,6 +65,14 @@ grep -Fqx 'd3d11.preferredMaxFrameRate = 60' "$ROOT/runtime/dxmt.conf" || die 'D
 grep -Fqx 'export FEX_TSOENABLED=0' "$ROOT/scripts/vkmt-runtime-env.sh" || die 'TSO policy missing'
 grep -Fqx 'export FEX_VECTORTSOENABLED=0' "$ROOT/scripts/vkmt-runtime-env.sh" || die 'vector TSO policy missing'
 grep -Fqx 'export FEX_MEMCPYSETTSOENABLED=0' "$ROOT/scripts/vkmt-runtime-env.sh" || die 'memcpy TSO policy missing'
+grep -Fqx 'export WINEDEBUG=-all' "$ROOT/scripts/vkmt-runtime-env.sh" || die 'Wine tracing policy missing'
+grep -Fqx 'export FEX_SILENTLOG=1' "$ROOT/scripts/vkmt-runtime-env.sh" || die 'FEX silent logging policy missing'
+grep -Fqx 'export FEX_PROFILESTATS=0' "$ROOT/scripts/vkmt-runtime-env.sh" || die 'FEX profiling policy missing'
+grep -Fqx 'export MVK_CONFIG_TRACE_VULKAN_CALLS=0' "$ROOT/scripts/vkmt-runtime-env.sh" || die 'MoltenVK tracing policy missing'
+grep -Fqx 'export MVK_CONFIG_LOG_LEVEL=0' "$ROOT/scripts/vkmt-runtime-env.sh" || die 'MoltenVK log policy missing'
+grep -Fqx 'export MTL_CAPTURE_ENABLED=0' "$ROOT/scripts/vkmt-runtime-env.sh" || die 'Metal capture policy missing'
+grep -Fqx 'unset VKMT_PERF_RUN_ID VKMT_PERF_TRACE_HOST_DIR VKMT_PERF_ALLOW_PROVIDER_TELEMETRY_GAP' \
+  "$ROOT/scripts/vkmt-runtime-env.sh" || die 'VKMT performance trace variables are not cleared'
 
 for arch in aarch64 arm64ec x86_64 i386; do
   for dll in d3d11.dll d3d9.dll dxgi.dll; do
@@ -95,7 +107,8 @@ done
 [ ! -d "$ROOT/build" ] || [ -z "$(find "$ROOT/build" -mindepth 1 -print -quit)" ] || die 'build artifacts remain'
 
 if grep -RIl --exclude='SHA256SUMS' --exclude='*.md' --exclude='verify-runtime.sh' \
-    -E 'FEX_TRACE|VKMT_TRACE|WINEDEBUG=\+[a-z]' \
+    --exclude='vkmt-runtime-env.sh' \
+    -E 'FEX_TRACE|VKMT_TRACE|VKMT_PERF_RUN_ID|VKMT_PERF_TRACE_HOST_DIR|WINEDEBUG=\+[a-z]|VKMT_GRAPHICS_RUNTIME_LOGS' \
     "$ROOT/scripts" "$ROOT/runtime" 2>/dev/null | grep -q .; then
   die 'runtime tracing configuration remains'
 fi

@@ -21,7 +21,7 @@ exec env \
   FEX_TSOENABLED=0 \
   FEX_VECTORTSOENABLED=0 \
   FEX_MEMCPYSETTSOENABLED=0 \
-  WINEDEBUG='+process,+loaddll,+seh' \
+  WINEDEBUG=-all \
   WINEDEBUGGER=none \
   MS_FWD_COMPAT_GL_CTX=1 \
   "$BUILD/wine" "$INSTALLER"

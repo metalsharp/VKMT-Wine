@@ -275,6 +275,9 @@ validate_archive_layout() {
     "$PACKAGE_ROOT/wine/build-ec/dlls/d3d10_1/i386-windows/d3d10_1.dll" \
     "$PACKAGE_ROOT/wine/build-ec/dlls/dxgi/i386-windows/dxgi.dll" \
     "$PACKAGE_ROOT/graphics/dxvk/i386/d3d9.dll" \
+    "$PACKAGE_ROOT/graphics/dxvk/aarch64/d3d10core.dll" \
+    "$PACKAGE_ROOT/graphics/dxvk/aarch64/d3d10.dll" \
+    "$PACKAGE_ROOT/graphics/dxvk/aarch64/d3d10_1.dll" \
     "$PACKAGE_ROOT/graphics/vkd3d-proton/x86_64/d3d12.dll" \
     "$PACKAGE_ROOT/graphics/vkd3d-proton/x86_64/d3d12core.dll" \
     "$PACKAGE_ROOT/graphics/dxvk/x86_64/dxgi.dll" \

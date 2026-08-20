@@ -7,14 +7,16 @@ architecture with host library architecture:
 
 | Lane | D3D11/D3D9/DXGI | D3D12/D3D12core | Native bridge |
 | --- | --- | --- | --- |
-| ARM64/AArch64 | DXVK and Wine built-ins | VKD3D-Proton | ARM64 DXMT Unix bridge |
+| ARM64/AArch64 | DXVK D3D9/10/10.1/11 and DXGI | VKD3D-Proton | ARM64 DXMT Unix bridge |
 | ARM64EC | DXVK | VKD3D-Proton | ARM64EC DXMT Windows bridge |
 | x86_64 | DXVK | VKD3D-Proton | `xtajit64` plus DXMT |
 | i386/WoW64 | DXVK | VKD3D-Proton | `xtajit` plus i386 DXMT |
 
-Wine's built-in D3D10/D3D10core closure remains available in every guest
-lane. DXMT provides D3D10, D3D10core, D3D11, DXGI, and Winemetal routes where
-its architecture-specific bridge is selected.
+DXVK-MacOS is built for the ARM64/AArch64 D3D9, D3D10, D3D10.1, D3D10core,
+D3D11, and DXGI set as well as the other guest lanes. Wine's built-in D3D10
+closure remains available as a fallback. DXMT provides D3D10, D3D10core,
+D3D11, DXGI, and Winemetal routes where its architecture-specific bridge is
+selected.
 
 ## Default configuration
 

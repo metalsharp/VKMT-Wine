@@ -64,6 +64,9 @@ for arch in aarch64 arm64ec x86_64 i386; do
     [ -f "$ROOT/graphics/dxvk/$arch/$dll" ] || die "missing DXVK $arch/$dll"
   done
 done
+for dll in d3d10core.dll d3d10.dll d3d10_1.dll; do
+  [ -f "$ROOT/graphics/dxvk/aarch64/$dll" ] || die "missing DXVK aarch64/$dll"
+done
 for arch in arm64ec x86_64 i386; do
   [ -f "$ROOT/graphics/dxvk/$arch/d3d10core.dll" ] || die "missing DXVK $arch/d3d10core.dll"
 done

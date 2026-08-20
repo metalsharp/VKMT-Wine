@@ -53,8 +53,10 @@ identifies the archive as a clean runtime with no audits or roadmaps. The
 locally retained member manifest for that exact archive was checked as well;
 its archive SHA-256 is
 `02f42be17c776629ca786e8689aef7069d4300151e69ef95f8ac68f9bdd9d3a8`, and
-`rg` finds zero D3DMetal, GPTK, libd3dshared, or x86_64-unix members. The
-public release therefore remains D3DMetal-free by design.
+`rg` finds zero D3DMetal, GPTK, libd3dshared, or x86_64-unix members. Direct
+extraction of the two host members from that archive reports both
+`wine/build-ec/tools/wine/wine` and `wine/build-ec/server/wineserver` as
+Mach-O `arm64`. The public release therefore remains D3DMetal-free by design.
 
 ## What Sikarugir actually implements
 

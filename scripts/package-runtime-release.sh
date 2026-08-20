@@ -42,6 +42,9 @@ done
 [ -x "$RUNTIME_ROOT/wine/build-ec/wine" ] || die "missing ARM64 Wine host"
 [ -x "$RUNTIME_ROOT/wine/build-ec/server/wineserver" ] || die "missing ARM64 wineserver"
 [ -f "$RUNTIME_ROOT/.metalsharp-runtime-install" ] || die "missing install receipt"
+[ ! -e "$RUNTIME_ROOT/graphics/d3dmetal" ] && [ ! -L "$RUNTIME_ROOT/graphics/d3dmetal" ] || die "private D3DMetal payload cannot enter the public package"
+[ ! -e "$RUNTIME_ROOT/wine/build-ec/lib/external/D3DMetal.framework" ] && [ ! -L "$RUNTIME_ROOT/wine/build-ec/lib/external/D3DMetal.framework" ] || die "private D3DMetal framework link cannot enter the public package"
+[ ! -e "$RUNTIME_ROOT/wine/build-ec/lib/external/libd3dshared.dylib" ] && [ ! -L "$RUNTIME_ROOT/wine/build-ec/lib/external/libd3dshared.dylib" ] || die "private D3DMetal shared-library link cannot enter the public package"
 
 for tool in cp find rm tar zstd shasum awk sort split file mktemp; do
   command -v "$tool" >/dev/null 2>&1 || die "required tool not found: $tool"
@@ -78,7 +81,7 @@ rm -rf "$stage_root/source/VKMT"
 mkdir -p "$stage_root/source/VKMT"
 (cd "$VKMT" && tar -cf - \
     --exclude='./.git' --exclude='./.github' --exclude='./build' --exclude='./ci' --exclude='./wine' \
-    --exclude='./third_party' --exclude='./toolchains' --exclude='./docs/validation' \
+    --exclude='./third_party' --exclude='./toolchains' --exclude='./docs/validation' --exclude='./D3DMetal.md' \
     .) | tar -xf - -C "$stage_root/source/VKMT"
 
 # The package is a runtime, not a development checkout. Remove all probe

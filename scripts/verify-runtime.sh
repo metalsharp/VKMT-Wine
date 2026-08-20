@@ -14,6 +14,9 @@ done
 
 die() { echo "verify-runtime: $*" >&2; exit 1; }
 [ -n "$ROOT" ] && [ -d "$ROOT" ] || usage
+[ ! -e "$ROOT/graphics/d3dmetal" ] && [ ! -L "$ROOT/graphics/d3dmetal" ] || die 'private D3DMetal payload requires verify-d3dmetal-runtime.sh'
+[ ! -e "$ROOT/wine/build-ec/lib/external/D3DMetal.framework" ] && [ ! -L "$ROOT/wine/build-ec/lib/external/D3DMetal.framework" ] || die 'private D3DMetal framework requires verify-d3dmetal-runtime.sh'
+[ ! -e "$ROOT/wine/build-ec/lib/external/libd3dshared.dylib" ] && [ ! -L "$ROOT/wine/build-ec/lib/external/libd3dshared.dylib" ] || die 'private D3DMetal shared library requires verify-d3dmetal-runtime.sh'
 
 required=(
   "$ROOT/.metalsharp-runtime-install"

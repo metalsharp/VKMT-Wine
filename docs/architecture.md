@@ -67,6 +67,7 @@ VKMT-Wine/
 ├── test/                          source-tree contracts and acceptance probes
 ├── third_party/                   build-only source/tool inputs
 ├── tools/                         hot-set and performance utilities
+├── D3DMetal.md                   optional private D3DMetal integration gate
 └── LICENSE, README.md             project identity and entry point
 ```
 
@@ -267,6 +268,7 @@ and graphics updates are hash-checked before they are accepted.
 - [Quick Start](quick-start.md)
 - [Runtime inventory](runtime-inventory.md)
 - [Graphics](graphics.md)
+- [D3DMetal integration](https://github.com/metalsharp/VKMT-Wine/blob/main/D3DMetal.md)
 - [Performance](performance.md)
 - [Packaging and validation](package-and-validation.md)
 - [Third-party licenses](third-party-licenses.md)

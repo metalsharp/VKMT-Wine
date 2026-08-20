@@ -50,6 +50,10 @@ jobs:
           done < <(git ls-files '*.sh')
           shellcheck -S error "${bash_files[@]}"
 
+      - name: Run D3DMetal guard contract
+        shell: bash
+        run: bash test/d3dmetal-contract.sh
+
   python:
     name: Python compile and lint
     runs-on: ubuntu-latest

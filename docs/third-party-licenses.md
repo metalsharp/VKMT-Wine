@@ -60,6 +60,7 @@ texts or legal advice.
 | MoltenVK | Vulkan-to-Metal runtime | commit 1be06988d7363934bc8934ebce44976399009e1b | Apache-2.0 | source/third-party-licenses/MoltenVK-LICENSE.txt; included |
 | innoextract | Native ARM64 installer extraction | commit 67b64201771960eff32e41e88426553df255f370 | Permissive three-clause license | source/third-party-licenses/innoextract-LICENSE.txt; included in installer-runtime |
 | MetalSharp OpenGL sidecar | Native ARM64 OpenGL/Metal route | VKMT build output | VKMT/project or upstream terms as marked by the source | graphics/opengl-metal and source provenance; inspect the component notice before redistribution |
+| D3DMetal/GPTK | Optional private Apple graphics bridge; not in VKMT-1.0 | Sikarugir documents 1.1, 2.0, 2.1, and 3.0; no source or binary in Sikarugir | Apple proprietary, non-commercial GPTK terms plus listed open-source notices | D3DMetal.md, scripts/stage-d3dmetal-runtime.sh, and a user-supplied Apple license/acknowledgements receipt; never assume MIT or public-release eligibility |
 
 The x86_64 and i386 execution providers are not optional diagnostics. Their
 binaries, candidate variants, hashes, and runtime-provider copies remain part
@@ -254,9 +255,10 @@ GOG support, and the associated notices listed above.
 
 ### Explicitly outside VKMT scope
 
-D3DMetal/GPTK, Rosetta, proprietary Apple or Microsoft runtime packages,
-commercial FMOD SDK content, and unrelated MetalSharp application bundles are
-not part of the VKMT runtime license or component inventory.
+Rosetta, proprietary Apple or Microsoft runtime packages, commercial FMOD SDK
+content, and unrelated MetalSharp application bundles are not part of the
+public VKMT runtime. D3DMetal/GPTK is documented as a private, opt-in
+provider only; it is not included or licensed by the public VKMT release.
 
 ## Redistribution checklist
 
@@ -270,7 +272,9 @@ Before publishing a new VKMT runtime:
 - retain the GOG GPL notice and its complete dependency provenance;
 - verify the release manifest and metadata/SHA256SUMS after legal files are
   staged;
-- exclude Oracle JRE, FMOD, GPTK/D3DMetal, and any unreceipted payload;
+- exclude Oracle JRE, FMOD, public GPTK/D3DMetal payloads, and any unreceipted payload;
+- require the separate D3DMetal provider and Wine-loader receipts before any
+  private, non-commercial staging;
 - do not remove xtajit64, xtajit, candidate provider variants, or other
   required runtime DLLs under the cleanup policy; and
 - rerun the runtime verifier after any legal-file or package-layout change.

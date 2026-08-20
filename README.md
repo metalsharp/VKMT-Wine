@@ -43,6 +43,7 @@ launch commands.
 - [Project overview](docs/project-overview.md)
 - [Architecture](docs/architecture.md)
 - [Graphics](docs/graphics.md)
+- [D3DMetal integration audit and roadmap](https://github.com/metalsharp/VKMT-Wine/blob/main/D3DMetal.md)
 - [Performance](docs/performance.md)
 - [Packaging and validation](docs/package-and-validation.md)
 - [MetalSharp integration](docs/metalsharp-integration.md)

@@ -50,3 +50,9 @@ source "$VKMT_RUNTIME_ROOT/scripts/vkmt-gpu-cache-env.sh"
 # and can starve Steam's initial renderer/Mojo handoff.  Wine scopes this to
 # steamwebhelper.exe and removes only the optional telemetry switch.
 export VKMT_STEAM_DISABLE_STACK_PROFILER="${VKMT_STEAM_DISABLE_STACK_PROFILER:-1}"
+
+# D3DMetal is opt-in and private-only. Activation fails closed unless the
+# staged provider and the matching ARM64 Wine loader contract are verified.
+if [ "${VKMT_D3DMETAL_ENABLE:-0}" = 1 ]; then
+  source "$VKMT_RUNTIME_ROOT/scripts/vkmt-d3dmetal-env.sh"
+fi

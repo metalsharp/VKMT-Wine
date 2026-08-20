@@ -39,6 +39,16 @@ VKD3D-Proton supplies D3D12 translation. OpenGL uses the staged ARM64
 Metal-backed provider. Host dylibs are checked for ARM64 and relocatable
 loader paths; guest DLLs are checked against their PE machine type.
 
+## Optional D3DMetal route
+
+D3DMetal is not part of the public VKMT-1.0 runtime. The Sikarugir audit and
+current architecture constraints are recorded in [D3DMetal roadmap](https://github.com/metalsharp/VKMT-Wine/blob/main/D3DMetal.md).
+A private provider may be staged only through
+`scripts/stage-d3dmetal-runtime.sh`; it must be a receipt-backed ARM64
+provider with a matching VKMT Wine loader contract. The default runtime keeps
+D3DMetal disabled and continues to retain DXMT, DXVK, VKD3D-Proton, MoltenVK,
+xtajit64, and xtajit.
+
 ## Scope
 
 The release gate proves loading, architecture routing, provider staging,

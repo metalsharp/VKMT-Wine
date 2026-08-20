@@ -192,7 +192,7 @@ The canonical private staging path is:
 The documented Wine lookup paths are represented by explicit relative
 symlinks under:
 
-    wine/build-ec/lib/external/
+    wine/lib/external/
 
 The script currently prints that activation remains blocked until the VKMT
 Wine loader contract is installed. That contract is an implementation item,
@@ -301,7 +301,7 @@ Audit the checked-out Sikarugir source:
 
 Verify the current VKMT host boundary:
 
-    file /Volumes/AverySSD/VKMT-roadmap-2/fresh-install-published/wine/build-ec/wine
+    file /Volumes/AverySSD/VKMT-roadmap-2/fresh-install-published/wine/build-ec/tools/wine/wine
     find /Volumes/AverySSD/VKMT-roadmap-2/fresh-install-published \
       -type f -iname '*d3dmetal*' -o -iname 'libd3dshared.dylib'
 

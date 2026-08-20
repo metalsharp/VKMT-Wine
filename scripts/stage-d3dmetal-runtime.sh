@@ -95,7 +95,13 @@ EXTERNAL="$SOURCE/external"
 FRAMEWORK="$EXTERNAL/D3DMetal.framework"
 SHARED="$EXTERNAL/libd3dshared.dylib"
 TARGET="$ROOT/graphics/d3dmetal"
-WINE_EXTERNAL="$ROOT/wine/build-ec/lib/external"
+WINE_EXTERNAL="$ROOT/wine/lib/external"
+
+if [ -x "$ROOT/wine/build-ec/tools/wine/wine" ]; then
+  WINE_HOST="$ROOT/wine/build-ec/tools/wine/wine"
+else
+  WINE_HOST="$ROOT/wine/build-ec/wine"
+fi
 
 [ -d "$FRAMEWORK" ] || die "missing $FRAMEWORK"
 [ -f "$SHARED" ] || die "missing $SHARED"
@@ -145,6 +151,7 @@ done < <(/usr/bin/find "$FRAMEWORK" -type f -print0)
 
 [ ! -e "$TARGET" ] && [ ! -L "$TARGET" ] || die "refusing to replace existing provider: $TARGET"
 [ -d "$ROOT/wine/build-ec" ] || die "missing current VKMT Wine build: $ROOT/wine/build-ec"
+[ -x "$WINE_HOST" ] || die "missing current VKMT Wine host: $WINE_HOST"
 mkdir -p "$ROOT/graphics" "$WINE_EXTERNAL"
 STAGE_DIR="$(mktemp -d "$ROOT/.d3dmetal-stage.XXXXXX")"
 
@@ -188,9 +195,9 @@ PROVENANCE
 
 mv "$STAGE_DIR/graphics/d3dmetal" "$TARGET"
 MOVED_PROVIDER=1
-ln -s "../../../../graphics/d3dmetal/external/D3DMetal.framework" "$WINE_EXTERNAL/D3DMetal.framework"
+ln -s "../../../graphics/d3dmetal/external/D3DMetal.framework" "$WINE_EXTERNAL/D3DMetal.framework"
 CREATED_FRAMEWORK_LINK=1
-ln -s "../../../../graphics/d3dmetal/external/libd3dshared.dylib" "$WINE_EXTERNAL/libd3dshared.dylib"
+ln -s "../../../graphics/d3dmetal/external/libd3dshared.dylib" "$WINE_EXTERNAL/libd3dshared.dylib"
 CREATED_SHARED_LINK=1
 
 "$ROOT/scripts/verify-d3dmetal-runtime.sh" --runtime-root "$ROOT" --provider-only

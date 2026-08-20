@@ -53,7 +53,12 @@ PROVIDER="$ROOT/graphics/d3dmetal"
 EXTERNAL="$PROVIDER/external"
 FRAMEWORK="$EXTERNAL/D3DMetal.framework"
 SHARED="$EXTERNAL/libd3dshared.dylib"
-WINE_EXTERNAL="$ROOT/wine/build-ec/lib/external"
+WINE_EXTERNAL="$ROOT/wine/lib/external"
+if [ -x "$ROOT/wine/build-ec/tools/wine/wine" ]; then
+  WINE_HOST="$ROOT/wine/build-ec/tools/wine/wine"
+else
+  WINE_HOST="$ROOT/wine/build-ec/wine"
+fi
 
 [ -d "$PROVIDER" ] || die "missing provider root: $PROVIDER"
 [ -d "$FRAMEWORK" ] || die "missing D3DMetal.framework: $FRAMEWORK"
@@ -154,8 +159,8 @@ fi
   exit 0
 }
 
-[ -x "$ROOT/wine/build-ec/wine" ] || die "missing ARM64 VKMT Wine host"
-[ "$(/usr/bin/lipo -archs "$ROOT/wine/build-ec/wine")" = arm64 ] ||
+[ -x "$WINE_HOST" ] || die "missing ARM64 VKMT Wine host: $WINE_HOST"
+[ "$(/usr/bin/lipo -archs "$WINE_HOST")" = arm64 ] ||
   die "VKMT Wine host is not arm64-only"
 [ -f "$PROVIDER/VKMT-WINE-CONTRACT.txt" ] ||
   die "missing matching VKMT Wine D3DMetal loader contract"

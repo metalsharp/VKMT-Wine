@@ -59,6 +59,26 @@ extraction of the two host members from that archive reports both
 `wine/build-ec/tools/wine/wine` and `wine/build-ec/server/wineserver` as
 Mach-O `arm64`. The public release therefore remains D3DMetal-free by design.
 
+## Native-provider availability check
+
+The ARM64 provider requirement was checked against the current public
+ecosystem before treating it as an unperformed build step:
+
+- Apple's locally installed GPTK 3.0-2 provider is x86_64-only.
+- The public `d3dmetal-native` integration documents that Apple's framework is
+  x86_64-only and requires an x86_64 process under Rosetta on Apple Silicon:
+  <https://github.com/utmapp/d3dmetal-native>.
+- CodeWeavers' native ARM64 macOS preview explicitly documents that D3DMetal
+  is not included in that build:
+  <https://www.codeweavers.com/blog/mjohnson/2026/7/31/crossover-preview-the-right-to-bear-arm64-on-mac>.
+
+This confirms that no native ARM64 Apple provider is available to copy into
+the current VKMT runtime. It is not a missing Sikarugir wrapper step: Sikarugir
+supplies the engine selection and provider-layout behavior, while the provider
+itself is Apple's separately supplied binary. VKMT therefore keeps the
+native-only gate rather than silently reintroducing Rosetta or substituting
+another renderer.
+
 ## What Sikarugir actually implements
 
 The public Sikarugir repository contains the Apple license, acknowledgements,

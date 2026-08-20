@@ -44,14 +44,17 @@ not synthesized or copied without a valid redistributable SDK receipt.
 6. Run the fresh install verifier, `wineboot --init` with a disposable prefix,
    and the four-lane single-prefix acceptance runner from the external evidence
    workspace. Remove the temporary fixtures and prefix afterward.
-7. Upload the four parts, installer, manifest, and reassembly instructions with
-   asset clobbering only after all local hashes match the release API.
+7. Upload the four parts, installer, manifest, GOG integration archive, and
+   reassembly instructions with asset clobbering only after all local hashes
+   match the release API.
 
 ## Current release receipt
 
-The clean runtime archive currently published at
+The clean runtime archive prepared for publication at
 `v0.60.0-dependency-bundles` has SHA-256
-`ad4d022cdd17d49f0ff5c370a2728089b69961bc295188e91ce0936f0041e129`.
+`1a0047c9e260372d76caa7e4ee674b682f8ca26d33c870e02897a49af58ca84c`.
+It includes ARM64 DXVK D3D10, D3D10.1, D3D11, D3D9, and DXGI lanes plus
+Unity Mono engines from the current, Unity 6000.1, and Unity 2022.3 branches.
 The fresh external install passed `VKMT_RUNTIME_VERIFIED`, `WINEBOOT_RC0`,
 and the four-lane single-prefix acceptance result. Raw logs and temporary
 prefixes are retained only in the external workspace, never in this checkout

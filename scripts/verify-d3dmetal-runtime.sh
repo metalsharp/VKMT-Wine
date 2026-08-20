@@ -43,7 +43,8 @@ done
 
 [ -n "$ROOT" ] || usage
 [ -d "$ROOT" ] || die "runtime root does not exist: $ROOT"
-for tool in /usr/bin/file /usr/bin/lipo /usr/bin/find /usr/bin/shasum /usr/bin/sed /usr/bin/readlink; do
+for tool in /usr/bin/file /usr/bin/lipo /usr/bin/find /usr/bin/shasum /usr/bin/sed \
+  /usr/bin/readlink /usr/bin/nm /usr/bin/otool; do
   [ -x "$tool" ] || die "required tool not found: $tool"
 done
 
@@ -122,6 +123,31 @@ while IFS= read -r -d '' path; do
     *"Mach-O"*) check_arm64_macho "$path" ;;
   esac
 done < <(/usr/bin/find "$FRAMEWORK" -type f -print0)
+
+# Validate the ABI that makes this a Sikarugir/GPTK provider rather than an
+# arbitrary framework with a matching filename.  The Unix bridge must export
+# Wine's dispatch table; the framework must expose the Direct3D entrypoints
+# used by the D3D11/D3D12 guest lanes.
+require_symbol() {
+  local path="$1"
+  local symbol="$2"
+  /usr/bin/nm -gU "$path" 2>/dev/null | /usr/bin/grep -Eq "[[:space:]]${symbol}$" ||
+    die "provider ABI symbol is missing: $symbol ($path)"
+}
+
+require_symbol "$SHARED" '___wine_unix_call_funcs'
+require_symbol "$FRAMEWORK/Versions/Current/D3DMetal" '_CreateDXGIFactory'
+require_symbol "$FRAMEWORK/Versions/Current/D3DMetal" '_D3D11CreateDevice'
+require_symbol "$FRAMEWORK/Versions/Current/D3DMetal" '_D3D12CreateDevice'
+require_symbol "$FRAMEWORK/Versions/Current/D3DMetal" '_GFXT_Initialize'
+
+# The current VKMT build is an ARM64 host with FEX guest translation.  An
+# ARM64 Mach-O that quietly links Rosetta or advertises an x86 execution path
+# would violate that boundary just as surely as an x86_64 slice would.
+if /usr/bin/otool -L "$SHARED" "$FRAMEWORK/Versions/Current/D3DMetal" 2>/dev/null |
+  /usr/bin/grep -Eiq 'libRosetta|rosetta'; then
+  die "provider links a Rosetta dependency; native VKMT D3DMetal is required"
+fi
 
 [ "$PROVIDER_ONLY" -eq 1 ] && {
   printf '%s\n' 'VKMT_D3DMETAL_PROVIDER_VERIFIED'

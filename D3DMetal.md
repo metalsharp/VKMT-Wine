@@ -211,6 +211,17 @@ The default mode additionally requires an explicit
 graphics/d3dmetal/VKMT-WINE-CONTRACT.txt receipt covering the ARM64 loader
 and both x86_64 and i386 guest lanes.
 
+The verifier also checks the provider ABI, not only filenames and CPU slices:
+
+- `libd3dshared.dylib` must export Wine's `___wine_unix_call_funcs` table;
+- the framework must export `CreateDXGIFactory`, `D3D11CreateDevice`,
+  `D3D12CreateDevice`, and `GFXT_Initialize`; and
+- neither provider member may link a Rosetta dependency.
+
+This is the native-host boundary required by VKMT's current build policy. The
+installed GPTK 3.0-2 fails before this ABI gate because all inspected provider
+members are x86_64 and the bundle uses an x86_64-unix Wine closure.
+
 ### Opt-in environment handling
 
 Implemented:
@@ -220,8 +231,10 @@ Implemented:
 scripts/vkmt-runtime-env.sh loads this file only when
 VKMT_D3DMETAL_ENABLE=1. The profile is fail-closed and does not enable
 D3DMetal by default. It sets only the documented DXR/MetalFX feature
-switches and the private provider path. It does not set Rosetta controls,
-Metal capture, HUD, DXIL debug processing, or tracing flags.
+switches, the Sikarugir-compatible `D3DMETAL_RUNTIME_DIR`,
+`D3DMETAL_EXTERNAL_DIR`, and `D3DMETAL_UNIXLIB_DIR` provider paths, and the
+private provider path. It does not set Rosetta controls, Metal capture, HUD,
+DXIL debug processing, injected libraries, or tracing flags.
 
 ### Current runtime preservation
 
